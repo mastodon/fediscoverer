@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:mastodon/fasp_ruby
+  remote: https://github.com/mastodon/fasp_ruby.git
   revision: ea3175ca8eec2bbd20b55d7b130510ed9425e894
   glob: fasp_base/*.gemspec
   specs:
@@ -11,7 +11,7 @@ GIT
       rails (>= 8.0.0)
 
 GIT
-  remote: git@github.com:mastodon/fasp_ruby
+  remote: https://github.com/mastodon/fasp_ruby.git
   revision: ea3175ca8eec2bbd20b55d7b130510ed9425e894
   glob: fasp_data_sharing/*.gemspec
   specs:
