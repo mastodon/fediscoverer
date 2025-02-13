@@ -1,0 +1,25 @@
+<%= render_tabs ApplicationHelper::TRENDS_TABS, active: :hashtags, scope: "trends.tabs" %>
+
+<%= page_header do %>
+  <%= t(".hashtag_trends") %>
+<% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th><%= Hashtag.human_attribute_name(:name) %></th>
+      <th><%= t(".score") %></th>
+      <th><%= t(".rank") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trending_hashtags.each do |hashtag| %>
+      <tr>
+        <%= td do %><%= hashtag.name %><% end %>
+        <%= td do %><%= hashtag.score %><% end %>
+        <%= td do %><%= hashtag.rank %><% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

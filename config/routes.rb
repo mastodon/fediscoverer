@@ -1,0 +1,22 @@
+Rails.application.routes.draw do
+  mount FaspDataSharing::Engine, at: "/"
+  mount FaspBase::Engine, at: "/"
+
+  get "up" => "rails/health#show", as: :rails_health_check
+
+  namespace :fasp do
+    namespace :trends do
+      namespace :v0 do
+        resources :contents, only: :index, path: "content"
+        resources :hashtags, only: :index
+        resources :links, only: :index
+      end
+    end
+  end
+
+  resources :content_trends, only: :index
+  resources :hashtag_trends, only: :index
+  resources :link_trends, only: :index
+
+  root "fasp_base/homes#show"
+end

@@ -1,0 +1,27 @@
+<%= render_tabs ApplicationHelper::TRENDS_TABS, active: :links, scope: "trends.tabs" %>
+
+<%= page_header do %>
+  <%= t(".link_trends") %>
+<% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th><%= Link.human_attribute_name(:url) %></th>
+      <th><%= t(".score") %></th>
+      <th><%= t(".rank") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trending_links.each do |link| %>
+      <tr>
+        <%= td do %>
+          <%= link_to truncate(link.url, length: 100), link.url %>
+        <% end %>
+        <%= td do %><%= link.score %><% end %>
+        <%= td do %><%= link.rank %><% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

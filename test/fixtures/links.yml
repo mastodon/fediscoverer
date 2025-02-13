@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+a:
+  url: https://example.com/a
+
+<% 40.times do |i| %>
+link_<%= i %>:
+  url: <%= Faker::Internet.unique.url(host: "example.com") %>
+<% end %>

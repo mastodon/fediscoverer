@@ -1,0 +1,8 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+mastodon:
+  domain_name: mastodon.example.com
+  available: true
+  last_queried_at: <%= 1.hour.ago %>
+  connection_failures: 0
+  # pause_until: 2025-01-16 16:36:29

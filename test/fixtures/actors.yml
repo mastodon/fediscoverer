@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+discoverable:
+  server: mastodon
+  uri: https://mastodon.example.com/users/23
+  actor_type: Person
+  discoverable: true
+  indexable: true
+  description: MyText
+
+discoverable_not_indexable:
+  server: mastodon
+  uri: https://mastodon.example.com/users/12
+  actor_type: Person
+  discoverable: true
+  indexable: false
+  description: MyText
+
+not_discoverable:
+  server: mastodon
+  uri: https://mastodon.example.com/users/42
+  actor_type: Person
+  discoverable: false
+  indexable: false
+  description: MyText
+
+<% 20.times do |i| %>
+discoverable<%= i %>:
+  server: mastodon
+  uri: https://mastodon.example.com/users/100<%= i %>
+  actor_type: Person
+  discoverable: true
+  indexable: true
+  description: Actor<%= i %>
+<% end %>

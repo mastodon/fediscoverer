@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+fediverse:
+  name: fediverse
+
+<% 40.times do |i| %>
+hashtag_<%= i %>:
+  name: hashtag_<%= i %>
+<% end %>
