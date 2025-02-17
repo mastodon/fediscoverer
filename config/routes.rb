@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   namespace :fasp do
+    namespace :account_search do
+      namespace :v0 do
+        resource :search, only: :show
+      end
+    end
+
     namespace :trends do
       namespace :v0 do
         resources :contents, only: :index, path: "content"

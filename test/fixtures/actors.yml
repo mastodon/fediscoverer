@@ -6,7 +6,7 @@ discoverable:
   actor_type: Person
   discoverable: true
   indexable: true
-  description: MyText
+  full_text: please find me
 
 discoverable_not_indexable:
   server: mastodon
@@ -14,7 +14,7 @@ discoverable_not_indexable:
   actor_type: Person
   discoverable: true
   indexable: false
-  description: MyText
+  full_text: MyText
 
 not_discoverable:
   server: mastodon
@@ -22,7 +22,7 @@ not_discoverable:
   actor_type: Person
   discoverable: false
   indexable: false
-  description: MyText
+  full_text: MyText
 
 <% 20.times do |i| %>
 discoverable<%= i %>:
@@ -31,5 +31,5 @@ discoverable<%= i %>:
   actor_type: Person
   discoverable: true
   indexable: true
-  description: Actor<%= i %>
+  full_text: please find me
 <% end %>

@@ -1,4 +1,6 @@
 class Actor < ApplicationRecord
+  include FullTextSearchableConcern
+
   TYPES = %w[ Application Group Organization Person Service ].freeze
 
   # Transient attributes to build an indexable description from
@@ -13,11 +15,10 @@ class Actor < ApplicationRecord
 
   validates :uri, presence: true
   validates :actor_type, presence: true, inclusion: TYPES
-  validates :description,
+  validates :full_text,
     presence: { if: :discoverable? },
     absence: { unless: :discoverable? }
 
-  before_validation :set_description
   after_save :remove_unindexable_content
 
   def self.json_to_attributes(json_object)
@@ -44,8 +45,8 @@ class Actor < ApplicationRecord
 
   private
 
-  def set_description
-    self.description = if discoverable?
+  def set_full_text
+    self.full_text = if discoverable?
       [ name, username, stripped_summary ].compact.join
     else
       nil

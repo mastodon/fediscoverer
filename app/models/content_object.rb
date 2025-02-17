@@ -7,8 +7,6 @@ class ContentObject < ApplicationRecord
 
   attribute :in_reply_to, :string
 
-  normalizes :language, with: LanguageNormalizer.new
-
   belongs_to :actor
   has_one :server, through: :actor
   has_many :content_activities
