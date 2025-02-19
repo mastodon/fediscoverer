@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   mount FaspDataSharing::Engine, at: "/"
   mount FaspBase::Engine, at: "/"
 
+  mount MissionControl::Jobs::Engine, at: "/jobs"
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   namespace :fasp do
