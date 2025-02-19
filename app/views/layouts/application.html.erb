@@ -33,7 +33,9 @@
           <% if signed_in? %>
             <%= nav_link_to t('.sign_out'), fasp_base.session_path, data: {turbo_method: :delete} %>
           <% else %>
-            <%= nav_link_to t(".sign_up"), fasp_base.new_registration_path %>
+            <% if FaspBase.registration_enabled? %>
+              <%= nav_link_to t(".sign_up"), fasp_base.new_registration_path %>
+            <% end %>
             <%= nav_link_to t(".sign_in"), fasp_base.new_session_path %>
           <% end %>
         </div>
