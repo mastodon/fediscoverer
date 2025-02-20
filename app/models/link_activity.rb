@@ -8,16 +8,16 @@ class LinkActivity < ApplicationRecord
     hour = content_object.published_at.utc.beginning_of_hour
     language = content_object.language
     metric_diffs = content_object.metric_diffs
-    find_or_create_by!(link:, hour_of_activity: hour, language:)
-    where(link_id: link.id, hour_of_activity: hour, language:)
-      .update_counters(
-        total_uses: 1,
-        distinct_users: link.distinct_users_in(hour, language:),
-        shares: metric_diffs[:shares],
-        likes: metric_diffs[:likes],
-        replies: metric_diffs[:replies],
-        trend_signals: metric_diffs[:trend_signals]
-      )
+    activity = find_or_create_by!(link:, hour_of_activity: hour, language:)
+    activity.with_lock do
+      activity.distinct_users = link.distinct_users_in(hour, language:)
+      activity.total_uses += 1
+      activity.shares +=  metric_diffs[:shares]
+      activity.likes += metric_diffs[:likes]
+      activity.replies += metric_diffs[:replies]
+      activity.trend_signals += metric_diffs[:trend_signals]
+      activity.save!
+    end
   end
 
   def self.distribution_of(links, hours: 24, language: nil)

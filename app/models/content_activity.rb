@@ -9,14 +9,14 @@ class ContentActivity < ApplicationRecord
     # TODO use current time for updates
     hour = content_object.published_at.utc.beginning_of_hour
     metric_diffs = content_object.metric_diffs
-    find_or_create_by!(content_object:, hour_of_activity: hour)
-    where(content_object_id: content_object.id, hour_of_activity: hour)
-      .update_counters(
-        shares: metric_diffs[:shares],
-        likes: metric_diffs[:likes],
-        replies: metric_diffs[:replies],
-        trend_signals: metric_diffs[:trend_signals]
-      )
+    activity = find_or_create_by!(content_object:, hour_of_activity: hour)
+    activity.with_lock do
+      activity.shares += metric_diffs[:shares]
+      activity.likes += metric_diffs[:likes]
+      activity.replies += metric_diffs[:replies]
+      activity.trend_signals += metric_diffs[:trend_signals]
+      activity.save!
+    end
   end
 
   def self.record_reply(content_object, replied_at)
