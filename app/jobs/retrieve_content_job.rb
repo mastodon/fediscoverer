@@ -15,7 +15,7 @@ class RetrieveContentJob < ApplicationJob
     # Handle reblogs
     if content_json.dig("type") == "Announce"
       content_json = content_json["object"]
-      uri = content_object["id"]
+      uri = content_json["id"]
     end
 
     if ContentObject.where(uri:).exists? && update
