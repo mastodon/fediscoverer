@@ -1,4 +1,5 @@
 class LinkActivity < ApplicationRecord
+  include ExpirableConcern
   include LanguageTaggableConcern
   include ScorableConcern
 

@@ -1,4 +1,5 @@
 class HashtagActivity < ApplicationRecord
+  include ExpirableConcern
   include LanguageTaggableConcern
   include ScorableConcern
 

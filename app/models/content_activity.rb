@@ -1,4 +1,5 @@
 class ContentActivity < ApplicationRecord
+  include ExpirableConcern
   include ScorableConcern
 
   belongs_to :content_object

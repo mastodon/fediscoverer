@@ -8,3 +8,7 @@
 #     command: "SoftDeletedRecord.due.delete_all"
 #     priority: 2
 #     schedule: at 5am every day
+production:
+  delete_expired_activity:
+    class: DeleteExpiredActivityJob
+    schedule: every hour
