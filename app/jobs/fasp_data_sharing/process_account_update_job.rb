@@ -1,10 +1,10 @@
 # Overwrite this class in your fasp application
 module FaspDataSharing
   class ProcessAccountUpdateJob < ApplicationJob
-    queue_as :default
+    queue_as :ingress
 
-    def perform(*args)
-      # Do something later
+    def perform(uri)
+      ::RetrieveActorJob.perform_later(uri, true)
     end
   end
 end
