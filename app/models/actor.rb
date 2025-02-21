@@ -49,7 +49,7 @@ class Actor < ApplicationRecord
 
   def set_full_text
     self.full_text = if discoverable?
-      [ name, username, stripped_summary ].compact.join
+      [ name, username, stripped_summary ].compact.join(" ")
     else
       nil
     end
