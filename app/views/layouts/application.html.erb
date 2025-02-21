@@ -27,6 +27,7 @@
           </p>
           <% if signed_in? %>
             <%= nav_link_to t(".trends"), main_app.content_trends_path %>
+            <%= nav_link_to t(".account_search"), main_app.account_search_path %>
           <% end %>
         </div>
         <div class="flex gap-8">

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :account_search, only: :show
+
   resources :content_trends, only: :index
   resources :hashtag_trends, only: :index
   resources :link_trends, only: :index

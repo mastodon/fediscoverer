@@ -3,9 +3,7 @@ class Fasp::AccountSearch::V0::SearchesController < Fasp::ApiController
     @limit = params[:limit] ? params[:limit].to_i : 20
     @page = params[:page] ? params[:page].to_i : 1
 
-    @accounts = Actor
-      .search(params[:term])
-      .limit(@limit)
+    @accounts = Actor.discoverable.search(params[:term])
 
     @total = @accounts.count
     @results = @accounts

@@ -21,6 +21,8 @@ class Actor < ApplicationRecord
 
   after_save :remove_unindexable_content
 
+  scope :discoverable, -> { where(discoverable: true) }
+
   def self.json_to_attributes(json_object)
     {
       actor_type: json_object["type"],

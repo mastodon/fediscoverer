@@ -8,6 +8,7 @@ FaspBase.tap do |f|
   # Add supported capabilities here:
   f.capabilities = [
     { id: "data_sharing", version: "0.1" },
+    { id: "account_search", version: "0.1" },
     { id: "trends", version: "0.1" }
   ]
 
