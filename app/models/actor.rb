@@ -26,8 +26,8 @@ class Actor < ApplicationRecord
   def self.json_to_attributes(json_object)
     {
       actor_type: json_object["type"],
-      discoverable: json_object["discoverable"],
-      indexable: json_object["indexable"],
+      discoverable: !!json_object["discoverable"],
+      indexable: !!json_object["indexable"],
       username: json_object["preferredUsername"],
       name: json_object["name"],
       summary: json_object["summary"]
