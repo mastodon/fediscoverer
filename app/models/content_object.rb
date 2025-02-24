@@ -1,4 +1,5 @@
 class ContentObject < ApplicationRecord
+  include FullTextSearchableConcern
   include LanguageTaggableConcern
   include RankableConcern
 
@@ -39,7 +40,7 @@ class ContentObject < ApplicationRecord
         last_edited_at: json_object["updated"] || json_object["published"],
         sensitive: json_object["sensitive"],
         language: json_object["contentMap"]&.keys&.first || "en",
-        full_text: Rails::HTML::FullSanitizer.new.sanitize(json_object["content"]),
+        full_text: json_object["content"],
         shares: json_object.dig("shares", "totalItems") || 0,
         likes: json_object.dig("likes", "totalItems") || 0,
         hashtags: hashtags.map { |name| Hashtag.find_or_initialize_by(name:) },

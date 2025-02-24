@@ -19,6 +19,7 @@ class Actor < ApplicationRecord
     presence: { if: :discoverable? },
     absence: { unless: :discoverable? }
 
+  before_validation :set_full_text
   after_save :remove_unindexable_content
 
   scope :discoverable, -> { where(discoverable: true) }
@@ -49,7 +50,7 @@ class Actor < ApplicationRecord
 
   def set_full_text
     self.full_text = if discoverable?
-      [ name, username, stripped_summary ].compact.join(" ")
+      [ name, username, summary ].compact.join(" ")
     else
       nil
     end
@@ -57,9 +58,5 @@ class Actor < ApplicationRecord
 
   def remove_unindexable_content
     content_objects.destroy_all unless indexable?
-  end
-
-  def stripped_summary
-    Rails::Html::FullSanitizer.new.sanitize(summary) if summary.present?
   end
 end

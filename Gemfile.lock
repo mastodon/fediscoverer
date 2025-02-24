@@ -137,6 +137,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.1.2)
+    htmlentities (4.3.4)
     http-2 (1.0.2)
     httpx (1.4.1)
       http-2 (>= 1.0.0)
@@ -394,8 +395,10 @@ DEPENDENCIES
   faker
   fasp_base!
   fasp_data_sharing!
+  htmlentities
   importmap-rails
   jbuilder
+  loofah
   mission_control-jobs
   pg (~> 1.1)
   propshaft

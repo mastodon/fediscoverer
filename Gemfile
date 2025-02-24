@@ -36,6 +36,12 @@ gem "mission_control-jobs"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+# Decode HTML entities
+gem "htmlentities"
+
+# Scrub HTML (this is a dependency of rails already, putting it here for compeleteness sake
+gem "loofah"
+
 gem "fasp_base", github: "mastodon/fasp_ruby", glob: "fasp_base/*.gemspec"
 gem "fasp_data_sharing", github: "mastodon/fasp_ruby", glob: "fasp_data_sharing/*.gemspec"
 
