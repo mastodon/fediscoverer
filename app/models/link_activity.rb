@@ -23,7 +23,7 @@ class LinkActivity < ApplicationRecord
 
   def self.distribution_of(links, hours: 24, language: nil)
     timerange_end = Time.zone.now.beginning_of_hour
-    timerange_start = timerange_end.ago((hours -1).hours)
+    timerange_start = timerange_end.ago((hours.to_i - 1).hours)
     query = select("link_activities.link_id, SUM(link_activities.score) AS score")
       .where(link_id: links.map(&:id), hour_of_activity: timerange_start..timerange_end)
       .order(hour_of_activity: :asc)

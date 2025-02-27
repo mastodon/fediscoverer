@@ -4,8 +4,8 @@ class ContentObject::TrendsQuery
   end
 
   def initialize(hours: 24, limit: 20, language: nil)
-    @hours = hours
-    @limit = limit
+    @hours = hours.to_i
+    @limit = limit.to_i
     @language = language
   end
 

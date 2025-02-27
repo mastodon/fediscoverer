@@ -23,7 +23,7 @@ class HashtagActivity < ApplicationRecord
 
   def self.distribution_of(hashtags, hours: 24, language: nil)
     timerange_end = Time.zone.now.beginning_of_hour
-    timerange_start = timerange_end.ago((hours -1).hours)
+    timerange_start = timerange_end.ago((hours.to_i - 1).hours)
     query = select("hashtag_activities.hashtag_id, SUM(hashtag_activities.score) AS score")
       .where(hashtag_id: hashtags.map(&:id), hour_of_activity: timerange_start..timerange_end)
       .order(hour_of_activity: :asc)

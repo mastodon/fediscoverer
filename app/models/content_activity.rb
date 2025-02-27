@@ -29,7 +29,7 @@ class ContentActivity < ApplicationRecord
 
   def self.distribution_of(content_objects, hours: 24)
     timerange_end = Time.zone.now.beginning_of_hour
-    timerange_start = timerange_end.ago((hours -1).hours)
+    timerange_start = timerange_end.ago((hours.to_i - 1).hours)
     where(content_object_id: content_objects.map(&:id), hour_of_activity: timerange_start..timerange_end)
       .order(hour_of_activity: :asc)
       .group_by(&:content_object_id)
