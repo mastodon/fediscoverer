@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   resources :hashtag_trends, only: :index
   resources :link_trends, only: :index
 
-  root "fasp_base/homes#show"
+  root "dashboards#show"
 end
