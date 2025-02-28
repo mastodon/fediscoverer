@@ -62,7 +62,7 @@
     <ol class="list-decimal list-inside">
       <% Link.trending(limit: 5).each do |link| %>
         <li class="my-2 even:bg-stone-100">
-          <%= link_to truncate(link.url), link, target: "_blank", class: "underline text-blue-400 hover:text-blue-600" %>
+          <%= link_to truncate(link.url), link.url, target: "_blank", class: "underline text-blue-400 hover:text-blue-600" %>
         </li>
       <% end %>
     </ol>
