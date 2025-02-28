@@ -1,0 +1,81 @@
+<%= page_header do %>
+  <%= t(".dashboard") %>
+<% end %>
+
+<div class="grid grid-cols-2 gap-8 mb-8">
+  <div>
+    <p class="my-4">
+      <%= link_to t(".trends"), main_app.content_trends_path, class: "text-xl underline text-blue-400 hover:text-blue-600" %>
+      <br>
+      <%= t(".trends_hint") %>
+    </p>
+
+    <p class="my-4">
+      <%= link_to t(".account_search"), main_app.account_search_path, class: "text-xl underline text-blue-400 hover:text-blue-600" %>
+      <br>
+      <%= t(".account_search_hint") %>
+    </p>
+  </div>
+
+  <div class="border border-gray-100 shadow p-4">
+    <table class="w-full">
+      <tbody>
+        <tr class="hover:bg-blue-100">
+          <th class="text-left"><%= t(".indexed_accounts") %></th>
+          <td><%= Actor.count %> (<%= Actor.discoverable.count %>)</td>
+        </tr>
+        <tr class="bg-stone-100 hover:bg-blue-100">
+          <th class="text-left"><%= t(".indexed_content_objects") %></th>
+          <td><%= ContentObject.count %></td>
+        </tr>
+        <tr class="hover:bg-blue-100">
+          <th class="text-left"><%= t(".known_hashtags") %></th>
+          <td><%= Hashtag.count %></td>
+        </tr>
+        <tr class="bg-stone-100 hover:bg-blue-100">
+          <th class="text-left"><%= t(".known_links") %></th>
+          <td><%= Link.count %></td>
+        </tr>
+        <tr class="hover:bg-blue-100">
+          <th class="text-left"><%= t(".available_trends_data") %></th>
+          <td><%= time_ago_in_words(ContentActivity.minimum(:hour_of_activity)) %></td>
+        <tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="grid grid-cols-3 gap-8">
+  <div class="border border-gray-100 shadow p-4">
+    <h3 class="font-bold mb-4"><%= t(".trending_hashtags") %></h3>
+    <ol class="list-decimal list-inside">
+      <% Hashtag.trending(limit: 5).each do |hashtag| %>
+        <li class="my-2 even:bg-stone-100">
+          <span class="text-blue-400">#</span><%= hashtag.name %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+
+  <div class="border border-gray-100 shadow p-4">
+    <h3 class="font-bold mb-4"><%= t(".trending_links") %></h3>
+    <ol class="list-decimal list-inside">
+      <% Link.trending(limit: 5).each do |link| %>
+        <li class="my-2 even:bg-stone-100">
+          <%= link_to truncate(link.url), link, target: "_blank", class: "underline text-blue-400 hover:text-blue-600" %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+
+  <div class="border border-gray-100 shadow p-4">
+    <h3 class="font-bold mb-4"><%= t(".trending_content") %></h3>
+    <ol class="list-decimal list-inside">
+      <% ContentObject.trending(limit: 5).each do |content_object| %>
+        <li class="my-2 even:bg-stone-100">
+          <%= link_to truncate(content_object.uri), content_object.uri, target: "_blank", class: "underline text-blue-400 hover:text-blue-600" %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
