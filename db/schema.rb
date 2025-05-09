@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_13_130411) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_09_093034) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -67,6 +67,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_13_130411) do
     t.index ["uri"], name: "index_content_objects_on_uri", unique: true
   end
 
+  create_table "fasp_base_admin_users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_fasp_base_admin_users_on_email", unique: true
+  end
+
+  create_table "fasp_base_invitation_codes", force: :cascade do |t|
+    t.string "code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_fasp_base_invitation_codes_on_code", unique: true
+  end
+
   create_table "fasp_base_servers", force: :cascade do |t|
     t.string "base_url", null: false
     t.bigint "user_id", null: false
@@ -81,11 +96,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_13_130411) do
     t.index ["user_id"], name: "index_fasp_base_servers_on_user_id"
   end
 
+  create_table "fasp_base_settings", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_fasp_base_settings_on_name", unique: true
+  end
+
   create_table "fasp_base_users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true, null: false
     t.index ["email"], name: "index_fasp_base_users_on_email", unique: true
   end
 

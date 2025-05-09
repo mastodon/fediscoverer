@@ -12,8 +12,6 @@ FaspBase.tap do |f|
     { id: "trends", version: "0.1" }
   ]
 
-  f.registration_enabled = ENV["DISABLE_SERVER_REGISTRATION"].present? ? false : true
-
   # Additional metadata
   # f.privacy_policy_url = ENV["PRIVACY_POLICY_URL"]
   # f.privacy_policy_language = ENV["PRIVACY_POLICY_LANGUAGE"]

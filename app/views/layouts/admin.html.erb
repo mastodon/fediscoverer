@@ -23,21 +23,19 @@
       <nav class="container mx-auto p-4 flex justify-between">
         <div class="flex gap-8">
           <p class="font-bold text-gray-600 px-2 py-1">
-            <%= link_to Rails.application.name, main_app.root_path %>
+            <%= Rails.application.name %>
           </p>
-          <% if signed_in? %>
-            <%= nav_link_to t(".trends"), main_app.content_trends_path %>
-            <%= nav_link_to t(".account_search"), main_app.account_search_path %>
+          <% if admin_signed_in? %>
+            <%= nav_link_to t(".users"), fasp_base.admin_users_path %>
+            <% if registration_invite_only? %>
+              <%= nav_link_to t(".invitation_codes"), fasp_base.admin_invitation_codes_path %>
+            <% end %>
+            <%= nav_link_to t(".settings"), fasp_base.admin_settings_path %>
           <% end %>
         </div>
         <div class="flex gap-8">
-          <% if signed_in? %>
-            <%= nav_link_to t('.sign_out'), fasp_base.session_path, data: {turbo_method: :delete} %>
-          <% else %>
-            <% if FaspBase.registration_enabled? %>
-              <%= nav_link_to t(".sign_up"), fasp_base.new_registration_path %>
-            <% end %>
-            <%= nav_link_to t(".sign_in"), fasp_base.new_session_path %>
+          <% if admin_signed_in? %>
+            <%= nav_link_to t(".sign_out"), fasp_base.admin_session_path, data: {turbo_method: :delete} %>
           <% end %>
         </div>
       </nav>
