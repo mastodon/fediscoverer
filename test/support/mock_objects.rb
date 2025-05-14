@@ -1,6 +1,6 @@
 module MockObjects
   def mock_actor(
-    uri: "https://mastodon.example.com/status/23.json",
+    uri: "https://mastodon.example.com/users/23.json",
     discoverable: true,
     indexable: true
   )
@@ -102,6 +102,16 @@ module MockObjects
       },
       tag:,
       attachments:
+    }.with_indifferent_access
+  end
+
+  def mock_followers_collection(uri: "#{actors(:discoverable).uri}/followers")
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      id: uri,
+      type: "OrderedCollection",
+      totalItems: 345,
+      first: "#{uri}?page=1"
     }.with_indifferent_access
   end
 

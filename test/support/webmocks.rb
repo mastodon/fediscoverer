@@ -9,6 +9,11 @@ module Webmocks
     stub_json_request(object[:id], object)
   end
 
+  def mock_valid_followers_collection_request(...)
+    collection = mock_followers_collection(...)
+    stub_json_request(collection[:id], collection)
+  end
+
   private
 
   def stub_json_request(uri, json_object)

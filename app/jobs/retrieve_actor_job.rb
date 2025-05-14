@@ -12,10 +12,15 @@ class RetrieveActorJob < ApplicationJob
 
     actor_json = Server.fetch(uri)
 
-    if Actor.where(uri:).exists? && update
-      Actor.where(uri:).first.update_from_json(actor_json)
-    else
-      Actor.create_from_json!(actor_json)
+    actor =
+      if Actor.where(uri:).exists? && update
+        Actor.where(uri:).first.tap { |a| a.update_from_json(actor_json) }
+      else
+        Actor.create_from_json!(actor_json)
+      end
+
+    if actor_json["followers"].present?
+      UpdateFollowersCountJob.perform_later(actor, actor_json["followers"])
     end
   end
 end

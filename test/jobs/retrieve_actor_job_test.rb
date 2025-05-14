@@ -27,4 +27,10 @@ class RetrieveActorJobTest < ActiveJob::TestCase
       @job.perform(@uri)
     end
   end
+
+  test "queues a job to update the followers count" do
+    assert_enqueued_with(job: UpdateFollowersCountJob) do
+      @job.perform(@uri)
+    end
+  end
 end
