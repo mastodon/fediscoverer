@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_14_073923) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_14_122158) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "actors", force: :cascade do |t|
     t.bigint "server_id", null: false
@@ -25,6 +26,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_073923) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "followers_count", default: 0, null: false
+    t.boolean "recommended", default: false, null: false
     t.index "to_tsvector(pg_text_search_configuration, full_text)", name: "actors_description_idx", using: :gin
     t.index ["server_id"], name: "index_actors_on_server_id"
     t.index ["uri"], name: "index_actors_on_uri", unique: true

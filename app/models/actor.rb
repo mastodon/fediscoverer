@@ -23,6 +23,19 @@ class Actor < ApplicationRecord
   after_save :remove_unindexable_content
 
   scope :discoverable, -> { where(discoverable: true) }
+  scope :most_popular, -> {
+    select("actors.*, (2 * actors.followers_count + SUM(content_objects.likes) + SUM(content_objects.shares)) AS popularity")
+      .joins(:content_objects)
+      .discoverable
+      .group("actors.id")
+      .order(popularity: :desc)
+  }
+  scope :recommended, -> { where(recommended: true) }
+  scope :similar, ->(actor) {
+    discoverable
+      .where("actors.full_text % ?", actor.full_text)
+      .where.not(id: actor.id)
+  }
 
   def self.json_to_attributes(json_object)
     {

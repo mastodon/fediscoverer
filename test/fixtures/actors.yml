@@ -24,6 +24,15 @@ not_discoverable:
   indexable: false
   full_text: MyText
 
+recommended:
+  server: mastodon
+  uri: https://mastodon.example.com/users/32
+  actor_type: Person
+  discoverable: true
+  indexable: true
+  full_text: I am recommended
+  recommended: true
+
 <% 20.times do |i| %>
 discoverable<%= i %>:
   server: mastodon
@@ -32,4 +41,5 @@ discoverable<%= i %>:
   discoverable: true
   indexable: true
   full_text: please find me
+  followers_count: <%= i * 10 %>
 <% end %>
