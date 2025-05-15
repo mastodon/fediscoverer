@@ -22,6 +22,8 @@ class ContentObject < ApplicationRecord
   validate :permission_to_be_indexed
 
   after_save :record_activity
+  after_save :add_actor_languages
+  after_destroy :update_actor_languages
 
   scope :recent, -> { order(published_at: :desc) }
   scope :from_hour, ->(hour) {
@@ -122,5 +124,15 @@ class ContentObject < ApplicationRecord
     return unless parent
 
     ContentActivity.record_reply(parent, published_at)
+  end
+
+  def add_actor_languages
+    LanguageTaggableConcern.expand(language).each do |l|
+      actor.actor_languages.find_or_create_by(language: l)
+    end
+  end
+
+  def update_actor_languages
+    actor.update_post_languages!
   end
 end

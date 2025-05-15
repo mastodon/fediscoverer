@@ -112,4 +112,24 @@ class ContentObjectTest < ActiveSupport::TestCase
 
     assert_equal ordered_scores, scores
   end
+
+  test "#destroy updates the actor's languages" do
+    content_objects(:french_post).destroy
+
+    languages = actors(:discoverable).actor_languages.map(&:language).sort
+
+    assert_equal [ "de", "de-de", "de-de-bn", "en" ], languages
+  end
+
+  test "#save updates the actor's languages" do
+    note = content_objects(:complex_language_tag)
+
+    assert_difference -> { ActorLanguage.count }, 1 do
+      note.language = "de"
+      note.save
+    end
+
+    languages = actors(:discoverable).actor_languages.map(&:language).sort
+    assert_includes languages, "de"
+  end
 end

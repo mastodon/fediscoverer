@@ -9,7 +9,8 @@ class Actor < ApplicationRecord
   attribute :summary, :string
 
   belongs_to :server
-  has_many :content_objects
+  has_many :actor_languages, dependent: :delete_all
+  has_many :content_objects, dependent: :delete_all
   has_many :hashtag_usages, through: :content_objects
   has_many :link_usages, through: :content_objects
 
@@ -30,6 +31,7 @@ class Actor < ApplicationRecord
       .group("actors.id")
       .order(popularity: :desc)
   }
+  scope :posts_in_language, ->(language) { joins(:actor_languages).where(actor_languages: { language: }) }
   scope :recommended, -> { where(recommended: true) }
   scope :similar, ->(actor) {
     discoverable
@@ -57,6 +59,18 @@ class Actor < ApplicationRecord
   def update_from_json(json_object)
     attributes = self.class.json_to_attributes(json_object)
     update(attributes)
+  end
+
+  def update_post_languages!
+    self.class.transaction do
+      actor_languages.delete_all
+      languages = content_objects.distinct.pluck(:language)
+      languages = languages.flat_map do |l|
+        LanguageTaggableConcern.expand(l)
+      end
+      languages.uniq!
+      languages.each { |l| actor_languages.create!(language: l) }
+    end
   end
 
   private

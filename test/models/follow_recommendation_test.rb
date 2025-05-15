@@ -12,10 +12,22 @@ class FollowRecommendationTest < ActiveSupport::TestCase
     assert_kind_of String, results.first
   end
 
+  test "::for only returns actors posting in the given language" do
+    german_recommended = actors(:german_recommended).uri
+
+    all_results = FollowRecommendation.for(@recipient.uri)
+
+    assert_includes all_results, german_recommended
+
+    english_results = FollowRecommendation.for(@recipient.uri, language: "en")
+
+    refute_includes english_results, german_recommended
+  end
+
   test "#recommended_account_uris_for returns results from the given sources" do
     sources = [
-      ->(uri) { [ "https://fedi.example.com/users/1" ] },
-      ->(uri) { [ "https://fedi.example.com/users/23" ] }
+      ->(uri, language) { [ "https://fedi.example.com/users/1" ] },
+      ->(uri, language) { [ "https://fedi.example.com/users/23" ] }
     ]
     follow_recommendation = FollowRecommendation.new(sources)
     results = follow_recommendation.recommended_account_uris_for(@recipient.uri)
@@ -27,8 +39,8 @@ class FollowRecommendationTest < ActiveSupport::TestCase
 
   test "#recommended_account_uris_for never returns more than the maximum number of records" do
     sources = [
-      ->(uri) { (1..100).map { |i| "https://fedi.example.com/users/#{i}" } },
-      ->(uri) { (101..200).map { |i| "https://fedi.example.com/users/#{i}" } }
+      ->(uri, language) { (1..100).map { |i| "https://fedi.example.com/users/#{i}" } },
+      ->(uri, language) { (101..200).map { |i| "https://fedi.example.com/users/#{i}" } }
     ]
     follow_recommendation = FollowRecommendation.new(sources)
     results = follow_recommendation.recommended_account_uris_for(@recipient.uri)
@@ -38,8 +50,8 @@ class FollowRecommendationTest < ActiveSupport::TestCase
 
   test "#recommended_account_uris_for does not return duplicates" do
     sources = [
-      ->(uri) { (1..10).map { |i| "https://fedi.example.com/users/#{i}" } },
-      ->(uri) { (1..10).map { |i| "https://fedi.example.com/users/#{i}" } }
+      ->(uri, language) { (1..10).map { |i| "https://fedi.example.com/users/#{i}" } },
+      ->(uri, language) { (1..10).map { |i| "https://fedi.example.com/users/#{i}" } }
     ]
     follow_recommendation = FollowRecommendation.new(sources)
     results = follow_recommendation.recommended_account_uris_for(@recipient.uri)
