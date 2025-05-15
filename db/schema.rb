@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_14_122158) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_15_123548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
+
+  create_table "actor_languages", force: :cascade do |t|
+    t.bigint "actor_id", null: false
+    t.string "language", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id", "language"], name: "index_actor_languages_on_actor_id_and_language", unique: true
+    t.index ["actor_id"], name: "index_actor_languages_on_actor_id"
+  end
 
   create_table "actors", force: :cascade do |t|
     t.bigint "server_id", null: false
@@ -227,6 +236,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_122158) do
     t.index ["domain_name"], name: "index_servers_on_domain_name", unique: true
   end
 
+  add_foreign_key "actor_languages", "actors"
   add_foreign_key "actors", "servers"
   add_foreign_key "content_activities", "content_objects"
   add_foreign_key "content_objects", "actors"

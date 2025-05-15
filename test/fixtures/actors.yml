@@ -33,6 +33,15 @@ recommended:
   full_text: I am recommended
   recommended: true
 
+german_recommended:
+  server: mastodon
+  uri: https://mastodon.example.com/users/33
+  actor_type: Person
+  discoverable: true
+  indexable: true
+  full_text: Ich bin empfohlen
+  recommended: true
+
 <% 20.times do |i| %>
 discoverable<%= i %>:
   server: mastodon

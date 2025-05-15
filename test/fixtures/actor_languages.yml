@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+discoverable_en:
+  actor: discoverable
+  language: en
+
+discoverable_fr:
+  actor: discoverable
+  language: fr
+
+recommended_en:
+  actor: recommended
+  language: en
+
+german_recommended_de:
+  actor: recommended
+  language: de
