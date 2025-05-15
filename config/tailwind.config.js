@@ -17,8 +17,6 @@ gems.forEach((gem) => {
   content.push(`${gemPath}/app/views/**/*.{erb,haml,html,slim}`)
 })
 
-console.log(content)
-
 module.exports = {
   content: content
 }
