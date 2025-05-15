@@ -6,10 +6,20 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
 
+  namespace :admin do
+    resources :follow_recommendation_presets, only: [ :index, :create, :destroy ]
+  end
+
   namespace :fasp do
     namespace :account_search do
       namespace :v0 do
         resource :search, only: :show
+      end
+    end
+
+    namespace :follow_recommendation do
+      namespace :v0 do
+        resources :accounts, only: :index
       end
     end
 
