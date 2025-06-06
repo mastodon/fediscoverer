@@ -7,13 +7,16 @@ on:
     types:
       - closed
 
-permissions:
-  contents: read
-  packages: write
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout repository
@@ -35,4 +38,4 @@ jobs:
             GIT_REPOSITORY_URL=https://github.com/${{ github.repository }}
             VERSION=${{ github.ref_name }}
           push: true
-          tags: mastodon/fediscoverer:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
