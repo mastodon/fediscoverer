@@ -1,18 +1,18 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 996ac181bbd298d3ac7bd717684c29c2b9ed7bc0
+  revision: 9142f69161f05a6b84c517ba49bb0510deccea0f
   glob: fasp_base/*.gemspec
   specs:
     fasp_base (0.1.0)
       bcrypt
       httpx
-      linzer
+      linzer (>= 0.7.2)
       openssl
       rails (>= 8.0.0)
 
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 996ac181bbd298d3ac7bd717684c29c2b9ed7bc0
+  revision: 9142f69161f05a6b84c517ba49bb0510deccea0f
   glob: fasp_data_sharing/*.gemspec
   specs:
     fasp_data_sharing (0.1.0)
@@ -96,10 +96,10 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcrypt (3.1.20)
-    benchmark (0.4.0)
-    bigdecimal (3.1.9)
+    benchmark (0.4.1)
+    bigdecimal (3.2.2)
     bindex (0.8.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
@@ -115,6 +115,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    cgi (0.4.2)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crack (1.0.0)
@@ -125,18 +126,20 @@ GEM
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    drb (2.2.1)
+    drb (2.2.3)
+    erb (5.0.1)
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
+    forwardable (1.3.3)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    hashdiff (1.1.2)
+    hashdiff (1.2.0)
     htmlentities (4.3.4)
     http-2 (1.1.1)
     httpx (1.5.0)
@@ -155,10 +158,14 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.12.0)
+    json (2.12.2)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
-    linzer (0.6.5)
+    linzer (0.7.3)
+      cgi (~> 0.4.2)
+      forwardable (~> 1.3, >= 1.3.3)
+      logger (~> 1.7, >= 1.7.0)
+      net-http (~> 0.6.0)
       openssl (~> 3.0, >= 3.0.0)
       rack (>= 2.2, < 4.0)
       starry (~> 0.2)
@@ -188,6 +195,8 @@ GEM
       stimulus-rails
       turbo-rails
     msgpack (1.8.0)
+    net-http (0.6.0)
+      uri
     net-imap (0.5.8)
       date
       net-protocol
@@ -237,7 +246,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (3.1.14)
+    rack (3.1.16)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -259,7 +268,7 @@ GEM
       activesupport (= 8.0.2)
       bundler (>= 1.15.0)
       railties (= 8.0.2)
-    rails-dom-testing (2.2.0)
+    rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
@@ -275,14 +284,15 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.2.1)
-    rdoc (6.13.1)
+    rake (13.3.0)
+    rdoc (6.14.0)
+      erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
     rexml (3.4.1)
-    rubocop (1.75.6)
+    rubocop (1.76.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -290,22 +300,22 @@ GEM
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.44.0, < 2.0)
+      rubocop-ast (>= 1.45.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.44.1)
+    rubocop-ast (1.45.0)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
     rubocop-performance (1.25.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.31.0)
+    rubocop-rails (2.32.0)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
       rubocop (>= 1.75.0, < 2.0)
-      rubocop-ast (>= 1.38.0, < 2.0)
+      rubocop-ast (>= 1.44.0, < 2.0)
     rubocop-rails-omakase (1.1.0)
       rubocop (>= 1.72)
       rubocop-performance (>= 1.24)
@@ -338,16 +348,16 @@ GEM
     tailwindcss-rails (4.2.3)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
-    tailwindcss-ruby (4.1.7)
-    tailwindcss-ruby (4.1.7-aarch64-linux-gnu)
-    tailwindcss-ruby (4.1.7-aarch64-linux-musl)
-    tailwindcss-ruby (4.1.7-arm64-darwin)
-    tailwindcss-ruby (4.1.7-x86_64-darwin)
-    tailwindcss-ruby (4.1.7-x86_64-linux-gnu)
-    tailwindcss-ruby (4.1.7-x86_64-linux-musl)
+    tailwindcss-ruby (4.1.8)
+    tailwindcss-ruby (4.1.8-aarch64-linux-gnu)
+    tailwindcss-ruby (4.1.8-aarch64-linux-musl)
+    tailwindcss-ruby (4.1.8-arm64-darwin)
+    tailwindcss-ruby (4.1.8-x86_64-darwin)
+    tailwindcss-ruby (4.1.8-x86_64-linux-gnu)
+    tailwindcss-ruby (4.1.8-x86_64-linux-musl)
     thor (1.3.2)
     timeout (0.4.3)
-    turbo-rails (2.0.13)
+    turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
     tzinfo (2.0.6)
@@ -367,13 +377,13 @@ GEM
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
     websocket (1.2.11)
-    websocket-driver (0.7.7)
+    websocket-driver (0.8.0)
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.7.2)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   aarch64-linux-gnu
