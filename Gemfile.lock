@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 9142f69161f05a6b84c517ba49bb0510deccea0f
+  revision: f64a1c3710b19ff25a210d923d07744f8295a2b4
   glob: fasp_base/*.gemspec
   specs:
     fasp_base (0.1.0)
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 9142f69161f05a6b84c517ba49bb0510deccea0f
+  revision: f64a1c3710b19ff25a210d923d07744f8295a2b4
   glob: fasp_data_sharing/*.gemspec
   specs:
     fasp_data_sharing (0.1.0)
@@ -142,7 +142,7 @@ GEM
     hashdiff (1.2.0)
     htmlentities (4.3.4)
     http-2 (1.1.1)
-    httpx (1.5.0)
+    httpx (1.5.1)
       http-2 (>= 1.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
@@ -292,7 +292,7 @@ GEM
     reline (0.6.1)
       io-console (~> 0.5)
     rexml (3.4.1)
-    rubocop (1.76.0)
+    rubocop (1.76.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -303,7 +303,7 @@ GEM
       rubocop-ast (>= 1.45.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.45.0)
+    rubocop-ast (1.45.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
     rubocop-performance (1.25.0)
