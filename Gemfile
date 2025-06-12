@@ -41,6 +41,10 @@ gem "htmlentities"
 # Scrub HTML (this is a dependency of rails already, putting it here for compeleteness sake
 gem "loofah"
 
+# Metrics exporter for prometheus
+gem "prometheus_exporter", require: false
+
+# FASP shared engines
 gem "fasp_base", github: "mastodon/fasp_ruby", glob: "fasp_base/*.gemspec"
 gem "fasp_data_sharing", github: "mastodon/fasp_ruby", glob: "fasp_data_sharing/*.gemspec"
 
