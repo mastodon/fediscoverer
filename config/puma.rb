@@ -39,3 +39,12 @@ plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
 # Specify the PID file. Defaults to tmp/pids/server.pid in development.
 # In other environments, only set the PID file if requested.
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
+
+# Gather puma metrics
+if ENV.fetch("PROMETHEUS_EXPORTER_ENABLED", nil) == "true"
+  after_worker_boot do
+    if !PrometheusExporter::Instrumentation::Puma.started?
+      PrometheusExporter::Instrumentation::Puma.start
+    end
+  end
+end
