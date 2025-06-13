@@ -10,7 +10,10 @@ class RetrieveActorJob < ApplicationJob
   def perform(uri, update = false)
     return if !update && Actor.where(uri:).exists?
 
-    actor_json = Server.fetch(uri)
+    server = Server.from_uri(uri)
+    return if server.blocked?
+
+    actor_json = server.fetch(uri)
 
     actor =
       if Actor.where(uri:).exists? && update

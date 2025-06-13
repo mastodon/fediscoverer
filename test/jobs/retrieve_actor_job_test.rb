@@ -33,4 +33,10 @@ class RetrieveActorJobTest < ActiveJob::TestCase
       @job.perform(@uri)
     end
   end
+
+  test "does not try to retrieve actor from blocked server" do
+    assert_no_difference -> { Actor.count } do
+      @job.perform("https://slopstodon.example.com/actors/1")
+    end
+  end
 end

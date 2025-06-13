@@ -66,4 +66,10 @@ class RetrieveContentJobTest < ActiveJob::TestCase
       @job.perform(@uri)
     end
   end
+
+  test "does not try to retrieve content from blocked server" do
+    assert_no_difference -> { ContentObject.count } do
+      @job.perform("https://slopstodon.example.com/posts/1")
+    end
+  end
 end

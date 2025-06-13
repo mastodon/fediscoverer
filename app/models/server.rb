@@ -1,5 +1,5 @@
 class Server < ApplicationRecord
-  has_many :actors
+  has_many :actors, dependent: :delete_all
   has_many :content_objects, through: :actors
 
   normalizes :domain_name, with: ->(domain) { domain.strip.downcase }
@@ -19,5 +19,12 @@ class Server < ApplicationRecord
     FaspDataSharing::ActivityPubObject.new(uri:).fetch
     # TODO: Catch and record exceptions, use information to skip
     # or retry jobs at a later time
+  end
+
+  def block!
+    transaction do
+      actors.destroy_all
+      update!(blocked: true)
+    end
   end
 end

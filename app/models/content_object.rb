@@ -10,7 +10,7 @@ class ContentObject < ApplicationRecord
 
   belongs_to :actor
   has_one :server, through: :actor
-  has_many :content_activities
+  has_many :content_activities, dependent: :delete_all
   has_many :hashtag_usages, dependent: :destroy
   has_many :link_usages, dependent: :destroy
   has_many :hashtags, through: :hashtag_usages, dependent: :destroy

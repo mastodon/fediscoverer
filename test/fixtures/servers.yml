@@ -6,3 +6,10 @@ mastodon:
   last_queried_at: <%= 1.hour.ago %>
   connection_failures: 0
   # pause_until: 2025-01-16 16:36:29
+
+blocked_server:
+  domain_name: slopstodon.example.com
+  available: true
+  last_queried_at: <%= 1.hour.ago %>
+  connection_failures: 0
+  blocked: true
