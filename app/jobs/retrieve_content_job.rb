@@ -10,7 +10,10 @@ class RetrieveContentJob < ApplicationJob
   def perform(uri, update = false)
     return if !update && ContentObject.where(uri:).exists?
 
-    content_json = Server.fetch(uri)
+    server = Server.from_uri(uri)
+    return if server.blocked?
+
+    content_json = server.fetch(uri)
 
     # Handle reblogs
     if content_json.dig("type") == "Announce"

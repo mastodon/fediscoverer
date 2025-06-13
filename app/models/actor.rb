@@ -10,7 +10,7 @@ class Actor < ApplicationRecord
 
   belongs_to :server
   has_many :actor_languages, dependent: :delete_all
-  has_many :content_objects, dependent: :delete_all
+  has_many :content_objects, dependent: :destroy
   has_many :hashtag_usages, through: :content_objects
   has_many :link_usages, through: :content_objects
 
