@@ -72,4 +72,13 @@ class RetrieveContentJobTest < ActiveJob::TestCase
       @job.perform("https://slopstodon.example.com/posts/1")
     end
   end
+
+  test "does not try to retrieve content from blocked actor" do
+    uri = "https://mastodon.example.com/posts/2"
+    mock_valid_content_request(uri:, actor: actors(:blocked).uri)
+
+    assert_no_difference -> { ContentObject.count } do
+      @job.perform(uri)
+    end
+  end
 end

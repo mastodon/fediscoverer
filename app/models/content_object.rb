@@ -62,7 +62,8 @@ class ContentObject < ApplicationRecord
       actor = Actor.where(uri: json_object["attributedTo"]).take
 
       # Stop if author not retrievable or has not opted-in to indexing
-      return unless actor && actor.indexable?
+      # or is blocked altogether
+      return unless actor && actor.indexable? && !actor.blocked?
 
       attributes = json_to_attributes(json_object).merge(actor:)
 
