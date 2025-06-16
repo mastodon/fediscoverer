@@ -42,6 +42,15 @@ german_recommended:
   full_text: Ich bin empfohlen
   recommended: true
 
+blocked:
+  server: mastodon
+  uri: https://mastodon.example.com/users/66
+  actor_type: Person
+  discoverable: true
+  indexable: true
+  full_text: please find me
+  blocked: true
+
 <% 20.times do |i| %>
 discoverable<%= i %>:
   server: mastodon

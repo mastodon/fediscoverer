@@ -73,6 +73,13 @@ class Actor < ApplicationRecord
     end
   end
 
+  def block!
+    transaction do
+      content_objects.destroy_all
+      update!(blocked: true)
+    end
+  end
+
   private
 
   def set_full_text
