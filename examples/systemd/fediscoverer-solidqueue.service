@@ -1,0 +1,23 @@
+# Simple template to base your own unit file on.
+# This is NOT a complete example, use at your own risk.
+[Unit]
+Description=fediscoverer-solidqueue
+After=network.target
+
+[Service]
+Type=simple
+User=fediscoverer
+WorkingDirectory=/home/fediscoverer/fediscoverer
+Environment="RAILS_ENV=production"
+; Improve memory usage with jemalloc, optional
+; Environment="LD_PRELOAD=libjemalloc.so"
+Environment="DOMAIN=<your domain>"
+Environment="SECRET_KEY_BASE=<your secret key base>"
+; Environment="JOB_CONCURRENCY=<number of CPUs>"
+ExecStart=bin/jobs
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
