@@ -1,0 +1,25 @@
+# Simple template to base your own unit file on.
+# This is NOT a complete example, use at your own risk.
+[Unit]
+Description=fediscoverer
+After=network.target
+
+[Service]
+Type=simple
+User=fediscoverer
+WorkingDirectory=/home/fediscoverer/fediscoverer
+Environment="RAILS_ENV=production"
+Environment="PORT=3002"
+; Improve memory usage with jemalloc, optional
+; Environment="LD_PRELOAD=libjemalloc.so"
+Environment="DOMAIN=<yourdomain>"
+Environment="SECRET_KEY_BASE=<your secret key base>"
+Environment="MISSION_CONTROL_USERNAME=<basic auth username>"
+Environment="MISSION_CONTROL_PASSWORD=<basic auth password>"
+ExecStart=bin/rails server
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
