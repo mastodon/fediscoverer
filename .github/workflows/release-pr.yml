@@ -1,0 +1,29 @@
+name: Test Container Image
+
+on:
+  pull_request:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          build-args: |
+            GIT_COMMIT_SHA=${{ github.sha }}
+            GIT_REPOSITORY_URL=https://github.com/${{ github.repository }}
+            VERSION=${{ github.ref_name }}
+          push: false
