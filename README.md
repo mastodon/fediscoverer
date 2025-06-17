@@ -71,7 +71,7 @@ this step every time to run maintenance tasks.
 The database is configured in `config/database.yml`, under the
 `production` key. The configuration in this repository expects three
 distinct databases to be present: `fediscoverer_production`,
-`fediscoverer_production_cache` and `fediscoverer_production`.
+`fediscoverer_production_cache` and `fediscoverer_production_queue`.
 
 A dedicated user, `fediscoverer`, needs to be present and have full read
 and write access to these databases.
