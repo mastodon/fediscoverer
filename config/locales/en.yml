@@ -1,4 +1,38 @@
+---
 en:
+  account_searches:
+    show:
+      account_search: Account Search
+      search: Search
+  activerecord:
+    attributes:
+      actor:
+        actor_type: Type
+        discoverable: discoverable
+      hashtag:
+        name: Hashtag
+  admin:
+    follow_recommendation_presets:
+      create:
+        success: Follow recommendation preset was saved successfully.
+        uri_missing: Please enter an actor URI.
+      destroy:
+        success: Follow recommendation preset was deleted successfully.
+      index:
+        add_account: Add account
+        delete: Delete
+        follow_recommendation_presets: Follow Recommendation Presets
+        follow_recommendation_presets_description: Account URIs that are always returned
+          when this provider is asked for follow recommendations. Use with care.
+        uri_placeholder: https://fedi.example.com/users/jane
+  attributes:
+    uri: URI
+    url: URL
+  content_trends:
+    index:
+      content_trends: Content Trends
+      rank: Rank
+      score: Score
   dashboards:
     show:
       account_search: Account Search
@@ -14,4 +48,26 @@ en:
       trending_links: Trending Links
       trends: Trends
       trends_hint: Explore current content, hashtag and link trends
-
+  hashtag_trends:
+    index:
+      hashtag_trends: Hashtag Trends
+      rank: Rank
+      score: Score
+  layouts:
+    admin:
+      follow_recommendation_presets: Follow recommendation presets
+      invitation_codes: Invitation codes
+      settings: Settings
+      sign_out: Sign out
+      users: Users
+    application:
+      account_search: Account search
+      sign_in: Sign in
+      sign_out: Sign out
+      sign_up: Sign up
+      trends: Trends
+  link_trends:
+    index:
+      link_trends: Link Trends
+      rank: Rank
+      score: Score
