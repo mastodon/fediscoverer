@@ -83,6 +83,7 @@ production:
     <<: *default
     database: fediscoverer_production
     username: fediscoverer
+    url: <%= ENV['DATABASE_URL'] %>
     password: <%= ENV["FEDISCOVERER_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
