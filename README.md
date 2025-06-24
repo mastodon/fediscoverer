@@ -135,8 +135,8 @@ Please see [packages](https://github.com/mastodon/fediscoverer/pkgs/container/fe
 
 ### Kubernetes
 
-We will provide an official Helm chart to run fediscoverer. This is
-coming soon. Watch this space.
+We provide an official Helm chart in our repository at
+https://github.com/mastodon/helm-charts.
 
 ## Configuration
 
