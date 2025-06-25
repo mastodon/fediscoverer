@@ -38,7 +38,13 @@
         </tr>
         <tr class="hover:bg-blue-100">
           <th class="text-left"><%= t(".available_trends_data") %></th>
-          <td><%= time_ago_in_words(ContentActivity.minimum(:hour_of_activity)) %></td>
+          <td>
+            <% if ContentActivity.any? %>
+              <%= time_ago_in_words(ContentActivity.minimum(:hour_of_activity)) %>
+            <% else %>
+              <%= t(".none") %>
+            <% end %>
+          </td>
         <tr>
       </tbody>
     </table>
