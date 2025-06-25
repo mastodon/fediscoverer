@@ -41,6 +41,7 @@ en:
       dashboard: Dashboard
       indexed_accounts: Number of indexed accounts (discoverable)
       indexed_content_objects: Number of indexed content objects
+      none: none
       known_hashtags: Number of known hashtags
       known_links: Number of known links
       trending_content: Trending Content
