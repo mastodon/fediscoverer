@@ -151,8 +151,6 @@ fediscoverer can be configured using environment variables. Here is a
 | `DATABASE_URL` | No |  | Optional PostgreSQL URL to set database host, port etc. |
 | `WEB_CONCURRENCY` | No | `1` | Number of puma application server processes. Can be set to the number of CPUs to make use of all of them |
 | `JOB_CONCURRENCY` | No | `1` | Number of Solid Queue processes. Can be set to the number of CPUs to make use of all of them |
-| `MISSION_CONTROL_USERNAME` | No | | HTTP basic authentication username to access the [Mission Control - Jobs](https://github.com/rails/mission_control-jobs) web interface |
-| `MISSION_CONTROL_PASSWORD` | No | | HTTP basic authentication password for aforementioned web interface |
 | `PROMETHEUS_EXPORTER_ENABLED` | No | false | Enable metrics gathering |
 | `PROMETHEUS_EXPORTER_HOST` | No | `localhost` | Host where the `prometheus_exporter` service is running |
 | `PROMETHEUS_EXPORTER_PORT` | No | `9394` | Port that the `prometheus_exporter` service is listening on |
