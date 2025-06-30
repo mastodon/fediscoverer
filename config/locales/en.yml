@@ -58,6 +58,7 @@ en:
     admin:
       follow_recommendation_presets: Follow recommendation presets
       invitation_codes: Invitation codes
+      mission_control: Jobs
       settings: Settings
       sign_out: Sign out
       users: Users
