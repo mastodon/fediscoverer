@@ -40,7 +40,7 @@ class ContentObject < ApplicationRecord
         published_at: json_object["published"],
         in_reply_to: json_object["inReplyTo"],
         last_edited_at: json_object["updated"] || json_object["published"],
-        sensitive: json_object["sensitive"],
+        sensitive: !!json_object["sensitive"],
         language: json_object["contentMap"]&.keys&.first || "en",
         full_text: json_object["content"],
         shares: json_object.dig("shares", "totalItems") || 0,

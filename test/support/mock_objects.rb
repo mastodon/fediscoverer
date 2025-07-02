@@ -48,7 +48,8 @@ module MockObjects
     hashtags: [],
     images: 0,
     videos: 0,
-    audio: 0
+    audio: 0,
+    sensitive: false
   )
     tag = hashtags.map do |hashtag|
       {
@@ -75,7 +76,7 @@ module MockObjects
       url: uri,
       attributedTo: actor,
       to:,
-      sensitive: false,
+      sensitive: sensitive,
       content:,
       contentMap: {
         en: content
