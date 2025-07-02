@@ -57,6 +57,9 @@ class ContentObject < ApplicationRecord
       # Stop if object is not meant ot be public
       return unless Array(json_object["to"]).include?(PUBLIC_URI)
 
+      # Skip unsupported types
+      return unless json_object["type"].in?(TYPES)
+
       # Retrieve actor if unknown
       RetrieveActorJob.perform_now(json_object["attributedTo"])
       actor = Actor.where(uri: json_object["attributedTo"]).take

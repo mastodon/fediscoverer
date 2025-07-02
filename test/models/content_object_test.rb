@@ -41,6 +41,14 @@ class ContentObjectTest < ActiveSupport::TestCase
     end
   end
 
+  test "::create_from_json! does not create a new content object if the `type` is not supported" do
+    object = mock_content_object(type: "Question")
+
+    assert_no_difference -> { ContentObject.count } do
+      ContentObject.create_from_json!(object)
+    end
+  end
+
   test "::create_from_json! creates new content object if actor is indexable" do
     assert_difference -> { ContentObject.count }, 1 do
       ContentObject.create_from_json!(mock_content_object)
