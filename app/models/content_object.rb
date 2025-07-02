@@ -63,7 +63,7 @@ class ContentObject < ApplicationRecord
 
       # Stop if author not retrievable or has not opted-in to indexing
       # or is blocked altogether
-      return unless actor && actor.indexable? && !actor.blocked?
+      return unless actor&.content_indexable?
 
       attributes = json_to_attributes(json_object).merge(actor:)
 
@@ -108,7 +108,7 @@ class ContentObject < ApplicationRecord
   end
 
   def permission_to_be_indexed
-    unless actor.discoverable? && actor.indexable?
+    unless actor&.content_indexable?
       errors.add(:base, :indexing_not_permitted)
     end
   end
