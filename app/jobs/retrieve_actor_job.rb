@@ -25,5 +25,7 @@ class RetrieveActorJob < ApplicationJob
     if actor_json["followers"].present?
       UpdateFollowersCountJob.perform_later(actor, actor_json["followers"])
     end
+  rescue HTTPX::HTTPError => e
+    raise if e.status >= 500
   end
 end

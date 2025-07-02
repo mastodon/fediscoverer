@@ -26,5 +26,7 @@ class RetrieveContentJob < ApplicationJob
     else
       ContentObject.create_from_json!(content_json)
     end
+  rescue HTTPX::HTTPError => e
+    raise if e.status >= 500
   end
 end
