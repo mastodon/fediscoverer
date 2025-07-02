@@ -44,6 +44,7 @@ module MockObjects
     uri: "https://mastodon.example.com/status/99",
     actor: actors(:discoverable).uri,
     to: [ "https://www.w3.org/ns/activitystreams#Public" ],
+    type: "Note",
     content: Faker::HTML.paragraph,
     hashtags: [],
     images: 0,
@@ -70,7 +71,7 @@ module MockObjects
         }
       ],
       id: uri,
-      type: "Note",
+      type:,
       summary: Faker::HTML.paragraph,
       published: 5.minutes.ago.utc.iso8601,
       url: uri,
