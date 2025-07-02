@@ -18,6 +18,9 @@ class ContentActivity < ApplicationRecord
       activity.trend_signals += metric_diffs[:trend_signals]
       activity.save!
     end
+  rescue ActiveRecord::RecordNotFound
+    # It is possible that the activity has been deleted between
+    # ::find_or_create_by and #with_lock
   end
 
   def self.record_reply(content_object, replied_at)
