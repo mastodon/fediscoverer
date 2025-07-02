@@ -33,7 +33,7 @@ class ContentObject < ApplicationRecord
 
   class << self
     def json_to_attributes(json_object)
-      hashtags = json_object["tag"].filter_map { |t| t["name"] if t["type"] == "Hashtag" }
+      hashtags = (json_object["tag"] || []).filter_map { |t| t["name"] if t["type"] == "Hashtag" }
       links = LinkExtractor.new(json_object).extracted_urls
       {
         object_type: json_object["type"],

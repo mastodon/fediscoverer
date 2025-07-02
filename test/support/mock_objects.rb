@@ -56,7 +56,7 @@ module MockObjects
         type: "Hashtag",
         name: hashtag
       }
-    end
+    end unless hashtags.nil?
     attachments = []
     images.times { attachments << mock_attachment }
     videos.times { attachments << mock_attachment(media_type: "video/mp4") }
