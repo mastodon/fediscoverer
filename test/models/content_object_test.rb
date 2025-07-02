@@ -96,6 +96,14 @@ class ContentObjectTest < ActiveSupport::TestCase
     end
   end
 
+  test "::create_from_json! creates a record when `sensitive` is missing from JSON" do
+    object = mock_content_object(sensitive: nil)
+
+    assert_difference -> { ContentObject.count }, 1 do
+      ContentObject.create_from_json!(object)
+    end
+  end
+
   test "::trending returns the given number of records" do
     trending = ContentObject.trending(limit: 11)
 
