@@ -80,6 +80,10 @@ class Actor < ApplicationRecord
     end
   end
 
+  def content_indexable?
+    discoverable && indexable && !blocked
+  end
+
   private
 
   def set_full_text

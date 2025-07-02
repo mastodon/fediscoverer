@@ -16,6 +16,14 @@ discoverable_not_indexable:
   indexable: false
   full_text: MyText
 
+indexable_not_discoverable:
+  server: mastodon
+  uri: https://mastodon.example.com/users/13
+  actor_type: Person
+  discoverable: false
+  indexable: true
+  full_text: MyText
+
 not_discoverable:
   server: mastodon
   uri: https://mastodon.example.com/users/42
