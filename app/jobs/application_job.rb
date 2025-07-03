@@ -6,7 +6,7 @@ class ApplicationJob < ActiveJob::Base
   retry_on ActiveRecord::Deadlocked
 
   # Retry on HTTP errors
-  retry_on HTTPX::HTTPError, wait: HTTP_500_RETRY_DELAY
+  retry_on HTTPX::HTTPError, wait: HTTP_5XX_RETRY_DELAY
 
   # Most jobs are safe to ignore if the underlying records are no longer available
   discard_on ActiveJob::DeserializationError
