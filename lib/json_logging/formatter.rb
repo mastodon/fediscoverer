@@ -20,10 +20,10 @@ module JsonLogging
       when Hash
         log.merge!(payload)
       else
-        log.merge!(msg: payload)
+        log.merge!(msg: payload.to_s.encode(Encoding::UTF_8, invalid: :replace, undef: :replace))
       end
 
-      log.to_json + "\n"
+      "#{log.to_json}\n"
     end
   end
 end
