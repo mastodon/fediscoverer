@@ -3,9 +3,10 @@ module JsonLogging
     def process_action(event)
       # return if event.payload[:exception].present?
 
-      request = event.payload[:request]
-      response = event.payload[:response]
-      error = event.payload[:exception]
+      payload = event.payload
+      request = payload[:request]
+      response = payload[:response]
+      error = payload[:exception]
 
       params = request.filtered_parameters
 
@@ -14,6 +15,7 @@ module JsonLogging
           id: request.request_id,
           method: request.request_method,
           url: request.filtered_path,
+          format: payload[:format] || "*/*",
           remoteAddress: request.remote_ip
         }
         req[:params] = params if params.present?
