@@ -13,7 +13,7 @@ module JsonLogging
         time: time.to_i,
         pid:,
         hostname: @hostname,
-        name: @name,
+        name: @name
       }
 
       case payload
