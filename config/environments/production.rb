@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require "json_logging"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -30,9 +31,14 @@ Rails.application.configure do
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
-  # Log to STDOUT with the current request id as a default log tag.
-  config.log_tags = [ :request_id ]
-  config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
+  if ENV.fetch('JSON_LOGGING', false) == "true"
+    config.logger   = JsonLogging::Logger.new(STDOUT, name: "fediscoverer-web")
+    config.solid_queue.logger = JsonLogging::Logger.new(STDOUT, name: "fediscoverer-jobs")
+  else
+    # Log to STDOUT with the current request id as a default log tag.
+    config.log_tags = [ :request_id ]
+    config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
+  end
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
