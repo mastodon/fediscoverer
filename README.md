@@ -151,6 +151,7 @@ fediscoverer can be configured using environment variables. Here is a
 | `DATABASE_URL` | No |  | Optional PostgreSQL URL to set database host, port etc. |
 | `WEB_CONCURRENCY` | No | `1` | Number of puma application server processes. Can be set to the number of CPUs to make use of all of them |
 | `JOB_CONCURRENCY` | No | `1` | Number of Solid Queue processes. Can be set to the number of CPUs to make use of all of them |
+| `JSON_LOGGING` | No | false | Enable log output to be in JSON format |
 | `PROMETHEUS_EXPORTER_ENABLED` | No | false | Enable metrics gathering |
 | `PROMETHEUS_EXPORTER_HOST` | No | `localhost` | Host where the `prometheus_exporter` service is running |
 | `PROMETHEUS_EXPORTER_PORT` | No | `9394` | Port that the `prometheus_exporter` service is listening on |
