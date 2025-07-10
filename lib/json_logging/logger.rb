@@ -14,7 +14,7 @@ module JsonLogging
       # Install JSON-aware request log subscriber
       ActionControllerLogSubscriber.attach_to :action_controller
 
-      json_logging_initialized = true
+      self.json_logging_initialized = true
     end
 
     def initialize(logdev = STDOUT, name: "rails")
