@@ -1,5 +1,14 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
+  revision: 6248dbcdfdfc943abde373c9655cc302b3c83b56
+  glob: fasp_data_sharing/*.gemspec
+  specs:
+    fasp_data_sharing (0.1.0)
+      fasp_base
+      rails (>= 8.0.0)
+
+GIT
+  remote: https://github.com/mastodon/fasp_ruby.git
   revision: f675d0f53260441cd44d887b393d060bd28523e0
   glob: fasp_base/*.gemspec
   specs:
@@ -8,15 +17,6 @@ GIT
       httpx
       linzer (>= 0.7.2)
       openssl
-      rails (>= 8.0.0)
-
-GIT
-  remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 6248dbcdfdfc943abde373c9655cc302b3c83b56
-  glob: fasp_data_sharing/*.gemspec
-  specs:
-    fasp_data_sharing (0.1.0)
-      fasp_base
       rails (>= 8.0.0)
 
 GEM
@@ -184,7 +184,7 @@ GEM
     matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (5.25.5)
-    mission_control-jobs (1.0.2)
+    mission_control-jobs (1.1.0)
       actioncable (>= 7.1)
       actionpack (>= 7.1)
       activejob (>= 7.1)
@@ -287,7 +287,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
-    rdoc (6.14.1)
+    rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
