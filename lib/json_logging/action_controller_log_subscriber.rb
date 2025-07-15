@@ -9,6 +9,8 @@ module JsonLogging
       error = payload[:exception]
 
       params = request.filtered_parameters
+      controller = params.delete(:controller)
+      action = params.delete(:action)
 
       info do
         req = {
@@ -19,6 +21,8 @@ module JsonLogging
           remoteAddress: request.remote_ip
         }
         req[:params] = params if params.present?
+        req[:controller] = controller if controller.present?
+        req[:action] = action if action.present?
 
         {
           req:,
