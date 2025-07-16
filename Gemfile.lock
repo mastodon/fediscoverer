@@ -1,18 +1,18 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: f675d0f53260441cd44d887b393d060bd28523e0
+  revision: fdd02377c1ff1db9a118bd35d8a54180c5f03ebd
   glob: fasp_base/*.gemspec
   specs:
     fasp_base (0.1.0)
       bcrypt
       httpx
-      linzer (>= 0.7.2)
+      linzer (>= 0.7.7)
       openssl
       rails (>= 8.0.0)
 
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 6248dbcdfdfc943abde373c9655cc302b3c83b56
+  revision: fdd02377c1ff1db9a118bd35d8a54180c5f03ebd
   glob: fasp_data_sharing/*.gemspec
   specs:
     fasp_data_sharing (0.1.0)
@@ -127,7 +127,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     drb (2.2.3)
-    erb (5.0.1)
+    erb (5.0.2)
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
@@ -150,7 +150,7 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
-    io-console (0.8.0)
+    io-console (0.8.1)
     irb (1.15.2)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
@@ -161,7 +161,7 @@ GEM
     json (2.12.2)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
-    linzer (0.7.3)
+    linzer (0.7.7)
       cgi (~> 0.4.2)
       forwardable (~> 1.3, >= 1.3.3)
       logger (~> 1.7, >= 1.7.0)
@@ -184,7 +184,7 @@ GEM
     matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (5.25.5)
-    mission_control-jobs (1.0.2)
+    mission_control-jobs (1.1.0)
       actioncable (>= 7.1)
       actionpack (>= 7.1)
       activejob (>= 7.1)
@@ -235,11 +235,10 @@ GEM
     prism (1.4.0)
     prometheus_exporter (2.2.0)
       webrick
-    propshaft (1.1.0)
+    propshaft (1.2.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
-      railties (>= 7.0.0)
     psych (5.2.6)
       date
       stringio
@@ -287,14 +286,14 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
-    rdoc (6.14.1)
+    rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
     rexml (3.4.1)
-    rubocop (1.77.0)
+    rubocop (1.78.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -305,7 +304,7 @@ GEM
       rubocop-ast (>= 1.45.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.45.1)
+    rubocop-ast (1.46.0)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
     rubocop-performance (1.25.0)
@@ -335,7 +334,7 @@ GEM
       activejob (>= 7.2)
       activerecord (>= 7.2)
       railties (>= 7.2)
-    solid_queue (1.1.5)
+    solid_queue (1.2.0)
       activejob (>= 7.1)
       activerecord (>= 7.1)
       concurrent-ruby (>= 1.3.1)
@@ -347,7 +346,7 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.7)
-    tailwindcss-rails (4.2.3)
+    tailwindcss-rails (4.3.0)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
     tailwindcss-ruby (4.1.11)
