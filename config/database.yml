@@ -93,4 +93,4 @@ production:
     <<: *primary_production
     database: fediscoverer_production_queue
     migrations_paths: db/queue_migrate
-    pool: <%= 2 * ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    pool: <%= ENV.fetch("QUEUE_CONNECTION_POOL_SIZE", ENV.fetch("RAILS_MAX_THREADS", 5)) %>
