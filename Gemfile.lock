@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: a3f5340515d112695d58f0a0428e61aaef7fdc03
+  revision: ebcad4cff800bd91d7af3815c1ec314d2935c120
   glob: fasp_base/*.gemspec
   specs:
     fasp_base (0.1.0)
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: a3f5340515d112695d58f0a0428e61aaef7fdc03
+  revision: ebcad4cff800bd91d7af3815c1ec314d2935c120
   glob: fasp_data_sharing/*.gemspec
   specs:
     fasp_data_sharing (0.1.0)
@@ -139,10 +139,10 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    hashdiff (1.2.0)
+    hashdiff (1.2.1)
     htmlentities (4.3.4)
     http-2 (1.1.1)
-    httpx (1.5.1)
+    httpx (1.6.0)
       http-2 (>= 1.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
@@ -249,7 +249,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (6.6.1)
+    puma (7.0.2)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
@@ -298,8 +298,8 @@ GEM
     regexp_parser (2.11.2)
     reline (0.6.2)
       io-console (~> 0.5)
-    rexml (3.4.2)
-    rubocop (1.80.1)
+    rexml (3.4.3)
+    rubocop (1.80.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -313,10 +313,10 @@ GEM
     rubocop-ast (1.46.0)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
-    rubocop-performance (1.25.0)
+    rubocop-performance (1.26.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
-      rubocop-ast (>= 1.38.0, < 2.0)
+      rubocop-ast (>= 1.44.0, < 2.0)
     rubocop-rails (2.33.3)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
@@ -328,7 +328,7 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
-    rubyzip (3.0.2)
+    rubyzip (3.1.0)
     securerandom (0.4.1)
     selenium-webdriver (4.35.0)
       base64 (~> 0.2)
