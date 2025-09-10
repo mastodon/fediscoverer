@@ -4,6 +4,8 @@ module FaspDataSharing
     queue_as :ingress
 
     def perform(uri)
+      return if uri.blank?
+
       ::RetrieveActorJob.perform_later(uri, true)
     end
   end

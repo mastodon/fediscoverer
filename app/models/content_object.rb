@@ -60,7 +60,8 @@ class ContentObject < ApplicationRecord
       # Skip unsupported types
       return unless json_object["type"].in?(TYPES)
 
-      # Retrieve actor if unknown
+      # Retrieve actor if unknown, skip if missing
+      return unless json_object["attributedTo"].present?
       RetrieveActorJob.perform_now(json_object["attributedTo"])
       actor = Actor.where(uri: json_object["attributedTo"]).take
 

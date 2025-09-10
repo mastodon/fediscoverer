@@ -9,7 +9,7 @@ class FollowRecommendation::Similar
       base_query = base_query.posts_in_language(language) if language
       base_query.similar(actor).limit(MAX_RESULTS).pluck(:uri)
     else
-      RetrieveActorJob.perform_later(actor_uri)
+      RetrieveActorJob.perform_later(actor_uri) if actor_uri.present?
       []
     end
   end

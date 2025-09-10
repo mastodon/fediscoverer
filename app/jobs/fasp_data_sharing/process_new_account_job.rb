@@ -4,7 +4,10 @@ module FaspDataSharing
     queue_as :ingress
 
     def perform(uri)
-      ::RetrieveActorJob.perform_later(uri) unless ::Actor.where(uri:).exists?
+      return if uri.blank?
+      return if ::Actor.where(uri:).exists?
+
+      ::RetrieveActorJob.perform_later(uri)
     end
   end
 end
