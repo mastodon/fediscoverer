@@ -69,7 +69,7 @@ class Actor < ApplicationRecord
         LanguageTaggableConcern.expand(l)
       end
       languages.uniq!
-      languages.each { |l| actor_languages.create!(language: l) }
+      languages.each { |l| actor_languages.create_or_find_by!(language: l) }
     end
   end
 
