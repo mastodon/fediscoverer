@@ -45,8 +45,8 @@ class ContentObject < ApplicationRecord
         full_text: json_object["content"],
         shares: json_object.dig("shares", "totalItems") || 0,
         likes: json_object.dig("likes", "totalItems") || 0,
-        hashtags: hashtags.map { |name| Hashtag.find_or_initialize_by(name:) },
-        links: links.map { |url| Link.find_or_initialize_by(url:) },
+        hashtags: hashtags.uniq.map { |name| Hashtag.find_or_initialize_by(name:) },
+        links: links.uniq.map { |url| Link.find_or_initialize_by(url:) },
         attached_images: count_attachments(json_object, "image"),
         attached_videos: count_attachments(json_object, "video"),
         attached_audio: count_attachments(json_object, "audio")

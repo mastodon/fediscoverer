@@ -120,6 +120,16 @@ class ContentObjectTest < ActiveSupport::TestCase
     end
   end
 
+  test "::create_from_json! handles duplicate links and hashtags gracefully" do
+    url = "https://example.com/home"
+    content = "<p><a href=\"#{url}\">a</a><a href=\"#{url}\">b</a></p>"
+    object = mock_content_object(content:, hashtags: %w[#one #two #one])
+
+    assert_difference -> { ContentObject.count }, 1 do
+      ContentObject.create_from_json!(object)
+    end
+  end
+
   test "::trending returns the given number of records" do
     trending = ContentObject.trending(limit: 11)
 
