@@ -8,6 +8,9 @@ class ApplicationJob < ActiveJob::Base
   # Retry on HTTP errors
   retry_on HTTPX::HTTPError, wait: HTTP_5XX_RETRY_DELAY
 
+  # We ignore invalid JSON (which is often just HTML from error pages and/or misconfigured web servers
+  discard_on JSON::ParserError
+
   # Most jobs are safe to ignore if the underlying records are no longer available
   discard_on ActiveJob::DeserializationError
 end
