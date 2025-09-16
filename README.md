@@ -1,4 +1,4 @@
-# Fediscoverer - Fediverse Search and Discovery Provider 
+# Fediscoverer - Fediverse Search and Discovery Provider
 
 fediscoverer is a Fediverse Discovery Provider allowing fediverse
 servers to share publicly discoverable accounts and content to improve
@@ -12,7 +12,7 @@ This project is in very early stages but we appreciate feedback.
 
 ### Manual
 
-Prerequisites: 
+Prerequisites:
 
 * Ruby (we recommend using a version manager such as mise, asdf or
   rbenv, which will pick up the correct version from `.ruby-version`)
@@ -155,6 +155,11 @@ fediscoverer can be configured using environment variables. Here is a
 | `PROMETHEUS_EXPORTER_ENABLED` | No | false | Enable metrics gathering |
 | `PROMETHEUS_EXPORTER_HOST` | No | `localhost` | Host where the `prometheus_exporter` service is running |
 | `PROMETHEUS_EXPORTER_PORT` | No | `9394` | Port that the `prometheus_exporter` service is listening on |
+| `FASP_NAME` | No | `fediscoverer` | The name of your instance, returned in provider info |
+| `PRIVACY_POLICY_URL` | No | | A link to your privacy policy |
+| `PRIVACY_POLICY_LANGUAGE` | No | | The two-letter code for the language your policy is written in |
+| `CONTACT_EMAIL` | No | | A contact email for your instance |
+| `FEDIVERSE_ACCOUNT` | No | | A contact fediverse account for your instance |
 
 ## Usage
 
@@ -249,7 +254,7 @@ See https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
 
 ## License
 
-Copyright (c) 2025 Mastodon gGmbH and contributors 
+Copyright (c) 2025 Mastodon gGmbH and contributors
 
 Licensed under GNU Affero General Public License as stated in the [LICENSE](LICENSE):
 
@@ -269,5 +274,3 @@ details.
 You should have received a copy of the GNU Affero General Public License along
 with this program. If not, see https://www.gnu.org/licenses/
 ```
-
-
