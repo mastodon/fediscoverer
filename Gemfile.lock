@@ -1,15 +1,6 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
   revision: 5b5fa9f4aaba678462ee3aed15e62a7914bad5d8
-  glob: fasp_data_sharing/*.gemspec
-  specs:
-    fasp_data_sharing (0.1.0)
-      fasp_base
-      rails (>= 8.0.0)
-
-GIT
-  remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 5b5fa9f4aaba678462ee3aed15e62a7914bad5d8
   glob: fasp_base/*.gemspec
   specs:
     fasp_base (0.1.0)
@@ -17,6 +8,15 @@ GIT
       httpx
       linzer (>= 0.7.7)
       openssl
+      rails (>= 8.0.0)
+
+GIT
+  remote: https://github.com/mastodon/fasp_ruby.git
+  revision: 5b5fa9f4aaba678462ee3aed15e62a7914bad5d8
+  glob: fasp_data_sharing/*.gemspec
+  specs:
+    fasp_data_sharing (0.1.0)
+      fasp_base
       rails (>= 8.0.0)
 
 GEM
@@ -103,7 +103,7 @@ GEM
     bcrypt (3.1.20)
     bigdecimal (3.3.1)
     bindex (0.8.1)
-    bootsnap (1.19.0)
+    bootsnap (1.20.1)
       msgpack (~> 1.2)
     brakeman (7.1.1)
       racc
