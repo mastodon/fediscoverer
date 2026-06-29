@@ -16,7 +16,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem "tailwindcss-rails", "< 5"
-gem "tailwindcss-ruby", "4.3.0" # 4.3.1 currently errors out
+gem "tailwindcss-ruby", "4.3.1" # 4.3.1 currently errors out
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
