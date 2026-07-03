@@ -1,35 +1,33 @@
-<%= page_header do %>
-  <%= t(".account_search") %>
-<% end %>
+<h1><%= t(".account_search") %></h1>
 
-<div class="my-4">
+<section>
   <%= form_with method: :get do |f| %>
-    <div class="flex gap-2">
+    <div>
       <%= f.text_field :term, value: params[:term], size: 50 %>
-      <%= button type: :submit do %>
-        <%= t(".search") %>
-      <% end %>
+      <button type="submit"><%= t(".search") %></button>
     </div>
   <% end %>
-</div>
+</section>
 
-<% if @actors.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th><%= Actor.human_attribute_name(:uri) %></th>
-        <th><%= Actor.human_attribute_name(:actor_type) %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @actors.each do |actor| %>
+<section>
+  <% if @actors.any? %>
+    <table>
+      <thead>
         <tr>
-          <%= td do %>
-            <%= link_to truncate(actor.uri, length: 100), actor.uri %>
-          <% end %>
-          <%= td do %><%= actor.actor_type %><% end %>
+          <th><%= Actor.human_attribute_name(:uri) %></th>
+          <th><%= Actor.human_attribute_name(:actor_type) %></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+      </thead>
+      <tbody>
+        <% @actors.each do |actor| %>
+          <tr>
+            <td>
+              <%= link_to truncate(actor.uri, length: 100), actor.uri %>
+            </td>
+            <td><%= actor.actor_type %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>

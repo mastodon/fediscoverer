@@ -14,9 +14,6 @@ gem "importmap-rails"
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails", "< 5"
-gem "tailwindcss-ruby", "4.3.0" # 4.3.1 currently errors out
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
