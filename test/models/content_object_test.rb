@@ -130,6 +130,26 @@ class ContentObjectTest < ActiveSupport::TestCase
     end
   end
 
+  test "::create_from_json! picks the first actor if `attributedTo` is an array" do
+    known_actor = actors(:discoverable)
+    unknown_actor_uri = "https://unknown.example.com/users/NewActor"
+
+    # Case one: URIs in an array
+    object = mock_content_object(actor: [ known_actor.uri, unknown_actor_uri ])
+
+    content_object = ContentObject.create_from_json!(object)
+    assert_equal known_actor, content_object.actor
+
+    # Case two: Objects in an array
+    object = mock_content_object(actor: [
+      { id: known_actor.uri },
+      { id: unknown_actor_uri }
+    ])
+
+    content_object = ContentObject.create_from_json!(object)
+    assert_equal known_actor, content_object.actor
+  end
+
   test "::trending returns the given number of records" do
     trending = ContentObject.trending(limit: 11)
 

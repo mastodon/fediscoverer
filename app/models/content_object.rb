@@ -62,8 +62,11 @@ class ContentObject < ApplicationRecord
 
       # Retrieve actor if unknown, skip if missing
       return unless json_object["attributedTo"].present?
-      RetrieveActorJob.perform_now(json_object["attributedTo"])
-      actor = Actor.where(uri: json_object["attributedTo"]).take
+      actor_uri = json_object["attributedTo"]
+      actor_uri = actor_uri.first if actor_uri.is_a?(Array)
+      actor_uri = actor_uri["id"] if actor_uri.is_a?(Hash)
+      RetrieveActorJob.perform_now(actor_uri)
+      actor = Actor.where(uri: actor_uri).take
 
       # Stop if author not retrievable or has not opted-in to indexing
       # or is blocked altogether
