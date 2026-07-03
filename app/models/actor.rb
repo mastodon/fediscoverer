@@ -25,7 +25,7 @@ class Actor < ApplicationRecord
 
   scope :discoverable, -> { where(discoverable: true) }
   scope :most_popular, -> {
-    select("actors.*, (2 * actors.followers_count + SUM(content_objects.likes) + SUM(content_objects.shares)) AS popularity")
+    select("actors.*, (2::bigint * actors.followers_count + SUM(content_objects.likes) + SUM(content_objects.shares)) AS popularity")
       .joins(:content_objects)
       .discoverable
       .group("actors.id")
