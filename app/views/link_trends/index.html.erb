@@ -1,9 +1,6 @@
 <%= render_tabs ApplicationHelper::TRENDS_TABS, active: :links, scope: "trends.tabs" %>
 
-<%= page_header do %>
-  <%= t(".link_trends") %>
-<% end %>
-
+<h1><%= t(".link_trends") %></h1>
 
 <table>
   <thead>
@@ -16,11 +13,11 @@
   <tbody>
     <% @trending_links.each do |link| %>
       <tr>
-        <%= td do %>
+        <td>
           <%= link_to truncate(link.url, length: 100), link.url %>
-        <% end %>
-        <%= td do %><%= link.score %><% end %>
-        <%= td do %><%= link.rank %><% end %>
+        </td>
+        <td><%= link.score %></td>
+        <td><%= link.rank %></td>
       </tr>
     <% end %>
   </tbody>

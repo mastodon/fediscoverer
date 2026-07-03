@@ -13,38 +13,39 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <header class="bg-blue-100">
-      <nav class="container mx-auto p-4 flex justify-between">
-        <div class="flex gap-8">
-          <p class="font-bold text-gray-600 px-2 py-1">
+    <header>
+      <nav class="container">
+        <section>
+          <p>
             <%= Rails.application.name %>
           </p>
+        </section>
+        <section>
           <% if admin_signed_in? %>
-            <%= nav_link_to t(".users"), fasp_base.admin_users_path %>
+            <%= link_to t(".users"), fasp_base.admin_users_path %>
             <% if registration_invite_only? %>
-              <%= nav_link_to t(".invitation_codes"), fasp_base.admin_invitation_codes_path %>
+              <%= link_to t(".invitation_codes"), fasp_base.admin_invitation_codes_path %>
             <% end %>
-            <%= nav_link_to t(".follow_recommendation_presets"), main_app.admin_follow_recommendation_presets_path %>
-            <%= nav_link_to t(".mission_control"), '/jobs' %>
-            <%= nav_link_to t(".settings"), fasp_base.admin_settings_path %>
+            <%= link_to t(".follow_recommendation_presets"), main_app.admin_follow_recommendation_presets_path %>
+            <%= link_to t(".mission_control"), '/jobs' %>
+            <%= link_to t(".settings"), fasp_base.admin_settings_path %>
           <% end %>
-        </div>
-        <div class="flex gap-8">
+        </section>
+        <section>
           <% if admin_signed_in? %>
             <%= nav_link_to t(".sign_out"), fasp_base.admin_session_path, data: {turbo_method: :delete} %>
           <% end %>
-        </div>
+        </section>
       </nav>
     </header>
     <main class="container mx-auto mt-8 px-5">
-      <%= notification(notice) if notice %>
-      <%= notification(alert, type: :alert) if alert %>
+      <%= render_notification(notice) if notice %>
+      <%= render_notification(alert, type: :alert) if alert %>
 
       <%= yield %>
     </main>

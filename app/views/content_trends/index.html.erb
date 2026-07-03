@@ -1,9 +1,6 @@
 <%= render_tabs ApplicationHelper::TRENDS_TABS, active: :content, scope: "trends.tabs" %>
 
-<%= page_header do %>
-  <%= t(".content_trends") %>
-<% end %>
-
+<h1><%= t(".content_trends") %></h1>
 
 <table>
   <thead>
@@ -16,11 +13,11 @@
   <tbody>
     <% @trending_content.each do |content_object| %>
       <tr>
-        <%= td do %>
+        <td>
           <%= link_to truncate(content_object.uri, length: 100), content_object.uri %>
-        <% end %>
-        <%= td do %><%= content_object.score %><% end %>
-        <%= td do %><%= content_object.rank %><% end %>
+        </td>
+        <td><%= content_object.score %></td>
+        <td><%= content_object.rank %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,17 +1,11 @@
-<div class="flex justify-between items-center">
-  <%= page_header do %>
-    <%= t(".follow_recommendation_presets") %>
-  <% end %>
-</div>
+<h1><%= t(".follow_recommendation_presets") %></h1>
 
-<p class="font-lg text-gray-700"><%= t(".follow_recommendation_presets_description") %></p>
+<p><%= t(".follow_recommendation_presets_description") %></p>
 
 <%= form_with url: admin_follow_recommendation_presets_path do |f| %>
-  <div class="flex gap-2">
+  <div>
     <%= f.url_field :uri, placeholder: t(".uri_placeholder") %>
-    <%= button type: :submit do %>
-      <%= t(".add_account") %>
-    <% end %>
+    <button type="submit"><%= t(".add_account") %></button>
   </div>
 <% end %>
 
@@ -26,11 +20,11 @@
   <tbody>
     <% @follow_recommendation_presets.each do |actor| %>
       <tr class="even:bg-blue-50">
-        <%= td do %><%= actor.uri %><% end %>
-        <%= td do %><% if actor.discoverable? %>&check;<% end %><% end %>
-        <%= td do %>
+        <td><%= actor.uri %></td>
+        <td><% if actor.discoverable? %>&check;<% end %></td>
+        <td>
           <%= action_link_to t(".delete"), admin_follow_recommendation_preset_path(actor), data: {turbo_method: :delete} %>
-        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,8 +1,6 @@
 <%= render_tabs ApplicationHelper::TRENDS_TABS, active: :hashtags, scope: "trends.tabs" %>
 
-<%= page_header do %>
-  <%= t(".hashtag_trends") %>
-<% end %>
+<h1><%= t(".hashtag_trends") %></h1>
 
 
 <table>
@@ -16,9 +14,9 @@
   <tbody>
     <% @trending_hashtags.each do |hashtag| %>
       <tr>
-        <%= td do %><%= hashtag.name %><% end %>
-        <%= td do %><%= hashtag.score %><% end %>
-        <%= td do %><%= hashtag.rank %><% end %>
+        <td><%= hashtag.name %></td>
+        <td><%= hashtag.score %></td>
+        <td><%= hashtag.rank %></td>
       </tr>
     <% end %>
   </tbody>
