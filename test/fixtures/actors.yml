@@ -59,6 +59,15 @@ blocked:
   full_text: please find me
   blocked: true
 
+popular:
+  server: mastodon
+  uri: https://mastodon.example.com/users/72
+  actor_type: Person
+  discoverable: true
+  indexable: true
+  full_text: Very popular
+  followers_count: 2147483647
+
 <% 20.times do |i| %>
 discoverable<%= i %>:
   server: mastodon

@@ -26,4 +26,10 @@ class ActorTest < ActiveSupport::TestCase
     discoverable = actors(:discoverable)
     assert discoverable.content_indexable?
   end
+
+  test "::most_popular handles large numbers" do
+    most_popular = Actor.most_popular
+
+    assert_equal actors(:popular), most_popular.first
+  end
 end
