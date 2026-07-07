@@ -3,13 +3,13 @@
 <section class="columns">
   <div>
     <p>
-      <%= link_to t(".trends"), main_app.content_trends_path, class: "text-xl underline text-blue-400 hover:text-blue-600" %>
+      <%= link_to t(".trends"), main_app.content_trends_path %>
       <br>
       <%= t(".trends_hint") %>
     </p>
 
     <p>
-      <%= link_to t(".account_search"), main_app.account_search_path, class: "text-xl underline text-blue-400 hover:text-blue-600" %>
+      <%= link_to t(".account_search"), main_app.account_search_path %>
       <br>
       <%= t(".account_search_hint") %>
     </p>
@@ -66,7 +66,7 @@
     <ol>
       <% Link.trending(limit: 5).each do |link| %>
         <li>
-          <%= link_to truncate(link.url), link.url, target: "_blank", class: "underline text-blue-400 hover:text-blue-600" %>
+          <%= link_to truncate(link.url), link.url, target: "_blank" %>
         </li>
       <% end %>
     </ol>
@@ -77,7 +77,7 @@
     <ol>
       <% ContentObject.trending(limit: 5).each do |content_object| %>
         <li>
-          <%= link_to truncate(content_object.uri), content_object.uri, target: "_blank", class: "underline text-blue-400 hover:text-blue-600" %>
+          <%= link_to truncate(content_object.uri), content_object.uri, target: "_blank" %>
         </li>
       <% end %>
     </ol>

@@ -14,12 +14,12 @@
   </thead>
   <tbody>
     <% @invitation_codes.each do |invitation_code| %>
-      <tr class="even:bg-blue-50">
-        <%= td do %><%= invitation_code.code %><% end %>
-        <%= td do %><%= invitation_code.created_at %><% end %>
-        <%= td do %>
+      <tr>
+        <td><%= invitation_code.code %></td>
+        <td><%= invitation_code.created_at %></td>
+        <td>
           <%= action_link_to t(".delete"), fasp_base.admin_invitation_code_path(invitation_code), data: {turbo_method: :delete} %>
-        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
