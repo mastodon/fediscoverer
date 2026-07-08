@@ -2,6 +2,8 @@
 require 'opentelemetry/sdk'
 require 'opentelemetry/instrumentation/all'
 OpenTelemetry::SDK.configure do |c|
-  c.service_name = ''
+  c.service_name = 'fediscoverer'
   c.use_all()
 end
+
+FediscovererTracer = OpenTelemetry.tracer_provider.tracer('fediscoverer')
