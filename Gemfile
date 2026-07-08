@@ -25,7 +25,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Use the database-backed adapters for Rails.cache and Active Job
 gem "solid_cache"
-gem "solid_queue"
+gem "solid_queue", "1.2.4" # Pin to known-good version as we saw deadlocks with 1.4.0
 
 # Web interface for solid queue
 gem "mission_control-jobs"
