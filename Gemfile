@@ -72,3 +72,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webmock"
 end
+
+gem "opentelemetry-sdk", "~> 1.12"
+gem "opentelemetry-instrumentation-all", "~> 0.94.0"
