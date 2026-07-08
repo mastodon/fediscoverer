@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "8.1.1"
+gem "rails", "~> 8.1.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -25,7 +25,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Use the database-backed adapters for Rails.cache and Active Job
 gem "solid_cache"
-gem "solid_queue", "1.2.4" # Pin to known-good version as we saw deadlocks with 1.4.0
+gem "solid_queue"
 
 # Web interface for solid queue
 gem "mission_control-jobs"
@@ -45,6 +45,9 @@ gem "prometheus_exporter", require: false
 # FASP shared engines
 gem "fasp_base", github: "mastodon/fasp_ruby", glob: "fasp_base/*.gemspec"
 gem "fasp_data_sharing", github: "mastodon/fasp_ruby", glob: "fasp_data_sharing/*.gemspec"
+
+# Lock httpx to last known-good version, timeouts in 1.8.0 seem to not work
+gem "httpx", "1.7.8"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
