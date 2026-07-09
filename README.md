@@ -161,6 +161,9 @@ fediscoverer can be configured using environment variables. Here is a
 | `CONTACT_EMAIL` | No | | A contact email for your instance |
 | `FEDIVERSE_ACCOUNT` | No | | A contact fediverse account for your instance |
 
+Further environment variables can be set for opentelemetry see
+[the official documentation](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#environment-variables)
+
 ## Usage
 
 ### Creating an Admin User
