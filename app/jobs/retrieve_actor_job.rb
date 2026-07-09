@@ -7,6 +7,9 @@ class RetrieveActorJob < ApplicationJob
   # overwhelm servers.
   # limits_concurrency to: 300, key: ->(uri) { URI(uri).host }, duration: 5.minutes, group: "retrieval"
 
+  # Only allow a single job per URI at the same time
+  limits_concurrency key: ->(uri, _ = false) { uri }, on_conflict: :discard
+
   def perform(uri, update = false)
     return if !update && Actor.where(uri:).exists?
 

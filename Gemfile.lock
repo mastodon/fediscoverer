@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: d5729595d3ba5ad952ac7631a9cc6d876c70034a
+  revision: 873de0ba9ebfb0d07d71ee82871772935e29321b
   glob: fasp_base/*.gemspec
   specs:
     fasp_base (0.1.0)
@@ -166,9 +166,9 @@ GEM
       google-protobuf (~> 4.26)
     hashdiff (1.2.1)
     htmlentities (4.4.2)
-    http-2 (1.2.0)
-    httpx (1.8.0)
-      http-2 (>= 1.2.0)
+    http-2 (1.2.1)
+    httpx (1.6.3)
+      http-2 (>= 1.0.0)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.3)
@@ -547,7 +547,7 @@ GEM
       activejob (>= 7.2)
       activerecord (>= 7.2)
       railties (>= 7.2)
-    solid_queue (1.2.4)
+    solid_queue (1.4.0)
       activejob (>= 7.1)
       activerecord (>= 7.1)
       concurrent-ruby (>= 1.3.1)
@@ -609,6 +609,7 @@ DEPENDENCIES
   fasp_base!
   fasp_data_sharing!
   htmlentities
+  httpx (= 1.6.3)
   importmap-rails
   jbuilder
   loofah
@@ -625,7 +626,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   selenium-webdriver
   solid_cache
-  solid_queue (= 1.2.4)
+  solid_queue
   stimulus-rails
   turbo-rails
   tzinfo-data
