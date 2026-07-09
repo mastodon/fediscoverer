@@ -64,6 +64,8 @@ USER 1000:1000
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
+ADD --unpack=true https://github.com/rbspy/rbspy/releases/download/v0.49.0/rbspy-aarch64-unknown-linux-musl.tar.gz ./tmp/
+
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
