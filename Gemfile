@@ -47,6 +47,7 @@ gem "fasp_base", github: "mastodon/fasp_ruby", glob: "fasp_base/*.gemspec"
 gem "fasp_data_sharing", github: "mastodon/fasp_ruby", glob: "fasp_data_sharing/*.gemspec"
 
 gem "httpx", "1.6.3" # Newer versions seem to cause problems
+gem "http-2", "1.1.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

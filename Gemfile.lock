@@ -143,7 +143,7 @@ GEM
       activesupport (>= 6.1)
     hashdiff (1.2.1)
     htmlentities (4.4.2)
-    http-2 (1.2.1)
+    http-2 (1.1.1)
     httpx (1.6.3)
       http-2 (>= 1.0.0)
     i18n (1.15.2)
@@ -411,6 +411,7 @@ DEPENDENCIES
   fasp_base!
   fasp_data_sharing!
   htmlentities
+  http-2 (= 1.1.1)
   httpx (= 1.6.3)
   importmap-rails
   jbuilder
