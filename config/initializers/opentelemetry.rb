@@ -5,7 +5,7 @@ require "opentelemetry-exporter-otlp"
 
 OpenTelemetry::SDK.configure do |c|
   c.service_name = "fediscoverer"
-  # c.use_all() is not being used to exclude OpenTelemetry::Instrumentation::ActiveJob since this is already covered by sidekiq logging
+  # excludes OpenTelemetry::Instrumentation::ActiveJob since this is already covered by sidekiq logging
   c.use "OpenTelemetry::Instrumentation::ActiveSupport"
   c.use "OpenTelemetry::Instrumentation::Rack"
   c.use "OpenTelemetry::Instrumentation::ActionPack"
