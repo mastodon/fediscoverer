@@ -8,7 +8,7 @@ class RetrieveContentJob < ApplicationJob
   # limits_concurrency to: 300, key: ->(uri) { URI(uri).host }, duration: 5.minutes, group: "retrieval"
 
   # Only allow a single job per URI at the same time
-  limits_concurrency key: ->(uri, _) { uri }, on_conflict: :discard
+  limits_concurrency key: ->(uri, _ = false) { uri }, on_conflict: :discard
 
   def perform(uri, update = false)
     return if !update && ContentObject.where(uri:).exists?
