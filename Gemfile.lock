@@ -19,6 +19,14 @@ GIT
       fasp_base
       rails (>= 8.0.0)
 
+GIT
+  remote: https://gitlab.com/os85/httpx.git
+  revision: ff9268330fa5e39da49cc8fd95703128ca5a6093
+  branch: issue-387
+  specs:
+    httpx (1.8.0)
+      http-2 (>= 1.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -144,8 +152,6 @@ GEM
     hashdiff (1.2.1)
     htmlentities (4.4.2)
     http-2 (1.2.1)
-    httpx (1.6.3)
-      http-2 (>= 1.0.0)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.3)
@@ -411,7 +417,7 @@ DEPENDENCIES
   fasp_base!
   fasp_data_sharing!
   htmlentities
-  httpx (= 1.6.3)
+  httpx!
   importmap-rails
   jbuilder
   loofah
