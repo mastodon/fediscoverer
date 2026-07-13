@@ -46,7 +46,11 @@ gem "prometheus_exporter", require: false
 gem "fasp_base", github: "mastodon/fasp_ruby", glob: "fasp_base/*.gemspec"
 gem "fasp_data_sharing", github: "mastodon/fasp_ruby", glob: "fasp_data_sharing/*.gemspec"
 
+# Use master branch to help debug a problem in release version
 gem "httpx", git: "https://gitlab.com/os85/httpx.git", branch: "master"
+
+# Get stacktrace of running process
+gem "sigdump", require: "sigdump/setup"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
