@@ -21,8 +21,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/os85/httpx.git
-  revision: ff9268330fa5e39da49cc8fd95703128ca5a6093
-  branch: issue-387
+  revision: f940d8dddce73c0690f5a030580e594679efc9c6
+  branch: master
   specs:
     httpx (1.8.0)
       http-2 (>= 1.2.0)
