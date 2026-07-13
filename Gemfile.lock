@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: d5729595d3ba5ad952ac7631a9cc6d876c70034a
+  revision: 873de0ba9ebfb0d07d71ee82871772935e29321b
   glob: fasp_data_sharing/*.gemspec
   specs:
     fasp_data_sharing (0.1.0)
@@ -167,7 +167,7 @@ GEM
     jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.20.0)
+    json (2.21.1)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     linzer (0.7.9)
