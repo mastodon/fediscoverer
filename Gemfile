@@ -46,7 +46,7 @@ gem "prometheus_exporter", require: false
 gem "fasp_base", github: "mastodon/fasp_ruby", glob: "fasp_base/*.gemspec"
 gem "fasp_data_sharing", github: "mastodon/fasp_ruby", glob: "fasp_data_sharing/*.gemspec"
 
-gem "httpx", git: "https://gitlab.com/os85/httpx.git", branch: "issue-387"
+gem "httpx", git: "https://gitlab.com/os85/httpx.git", branch: "master"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
