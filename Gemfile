@@ -47,9 +47,17 @@ gem "fasp_base", github: "mastodon/fasp_ruby", glob: "fasp_base/*.gemspec"
 gem "fasp_data_sharing", github: "mastodon/fasp_ruby", glob: "fasp_data_sharing/*.gemspec"
 
 group :opentelemetry do
-  gem "opentelemetry-sdk", "~> 1.12", require: false
-  gem "opentelemetry-instrumentation-all", "~> 0.94.0", require: false
   gem "opentelemetry-exporter-otlp", require: false
+  gem 'opentelemetry-instrumentation-action_mailer', require: false
+  gem 'opentelemetry-instrumentation-action_pack', require: false
+  gem 'opentelemetry-instrumentation-action_view', require: false
+  gem 'opentelemetry-instrumentation-active_record', require: false
+  gem 'opentelemetry-instrumentation-active_support', require: false
+  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.25.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.36.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.31.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.42.0', require: false
+  gem "opentelemetry-sdk", "~> 1.12", require: false
 end
 gem "httpx", "1.6.3" # Newer versions seem to cause problems
 

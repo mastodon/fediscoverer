@@ -162,7 +162,7 @@ fediscoverer can be configured using environment variables. Here is a
 | `FEDIVERSE_ACCOUNT` | No | | A contact fediverse account for your instance |
 
 Further environment variables can be set for opentelemetry see
-[the official documentation](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#environment-variables)
+[the official documentation](https://opentelemetry.io/docs/languages/sdk-configuration/general/)
 
 ## Usage
 
