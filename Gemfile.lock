@@ -12,12 +12,20 @@ GIT
 
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: d5729595d3ba5ad952ac7631a9cc6d876c70034a
+  revision: 873de0ba9ebfb0d07d71ee82871772935e29321b
   glob: fasp_data_sharing/*.gemspec
   specs:
     fasp_data_sharing (0.1.0)
       fasp_base
       rails (>= 8.0.0)
+
+GIT
+  remote: https://gitlab.com/os85/httpx.git
+  revision: f940d8dddce73c0690f5a030580e594679efc9c6
+  branch: master
+  specs:
+    httpx (1.8.0)
+      http-2 (>= 1.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -167,8 +175,6 @@ GEM
     hashdiff (1.2.1)
     htmlentities (4.4.2)
     http-2 (1.2.1)
-    httpx (1.6.3)
-      http-2 (>= 1.0.0)
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.3)
@@ -184,7 +190,7 @@ GEM
     jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.20.0)
+    json (2.21.1)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     linzer (0.7.9)
@@ -421,14 +427,15 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
-    rubyzip (3.4.0)
+    rubyzip (3.4.1)
     securerandom (0.4.1)
-    selenium-webdriver (4.45.0)
+    selenium-webdriver (4.46.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    sigdump (0.2.5)
     solid_cache (1.0.10)
       activejob (>= 7.2)
       activerecord (>= 7.2)
@@ -495,7 +502,7 @@ DEPENDENCIES
   fasp_base!
   fasp_data_sharing!
   htmlentities
-  httpx (= 1.6.3)
+  httpx!
   importmap-rails
   jbuilder
   loofah
@@ -519,6 +526,7 @@ DEPENDENCIES
   rails (~> 8.1.1)
   rubocop-rails-omakase
   selenium-webdriver
+  sigdump
   solid_cache
   solid_queue
   stimulus-rails

@@ -59,7 +59,12 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-rails', '~> 0.42.0', require: false
   gem "opentelemetry-sdk", "~> 1.12", require: false
 end
-gem "httpx", "1.6.3" # Newer versions seem to cause problems
+
+# Use master branch to help debug a problem in release version
+gem "httpx", git: "https://gitlab.com/os85/httpx.git", branch: "master"
+
+# Get stacktrace of running process
+gem "sigdump", require: "sigdump/setup"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
