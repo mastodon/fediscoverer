@@ -16,7 +16,6 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
   require "opentelemetry/instrumentation/pg"
   require "opentelemetry/instrumentation/rails"
 
-  ENV['OTEL_TRACES_EXPORTER']  ||= 'console'
   OpenTelemetry::SDK.configure do |c|
     c.service_name = "fediscoverer"
 
