@@ -3,9 +3,9 @@
 # https://opentelemetry.io/docs/concepts/sdk-configuration/
 
 require "opentelemetry/sdk"
-require "opentelemetry-exporter-otlp"
 
 if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
+  require "opentelemetry-exporter-otlp"
   require "opentelemetry/instrumentation/active_support"
   require "opentelemetry/instrumentation/rack"
   require "opentelemetry/instrumentation/action_pack"
