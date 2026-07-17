@@ -61,7 +61,7 @@ group :opentelemetry do
 end
 
 # Use master branch to help debug a problem in release version
-gem "httpx", git: "https://gitlab.com/os85/httpx.git", branch: "master"
+gem "httpx", git: "https://gitlab.com/os85/httpx.git", branch: "issue-388"
 
 # Get stacktrace of running process
 gem "sigdump", require: "sigdump/setup"
