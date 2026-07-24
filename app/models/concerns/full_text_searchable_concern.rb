@@ -12,7 +12,7 @@ module FullTextSearchableConcern
   class_methods do
     def string_to_query(string)
       string
-        .gsub(/[^[[:alnum:]]]+/, " ")
+        .gsub(/[^[[:alnum:]]_-]+/, " ")
         .gsub(/\s+&\s+/, " ")
         .split(/\s+/)
         .join(" & ")
