@@ -32,4 +32,10 @@ class ActorTest < ActiveSupport::TestCase
 
     assert_equal actors(:popular), most_popular.first
   end
+
+  test "::search works with multiple search terms" do
+    results = Actor.search("please find")
+
+    refute_empty results
+  end
 end
