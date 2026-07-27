@@ -57,7 +57,7 @@ group :opentelemetry do
   gem "opentelemetry-instrumentation-pg", "~> 0.36.0", require: false
   gem "opentelemetry-instrumentation-rack", "~> 0.31.0", require: false
   gem "opentelemetry-instrumentation-rails", "~> 0.42.0", require: false
-  gem "opentelemetry-sdk", "~> 1.12", require: false
+  gem "opentelemetry-sdk", "~> 1.13", require: false
 end
 
 # Get stacktrace of running process
