@@ -32,6 +32,10 @@ class ContentObject < ApplicationRecord
   scope :trending, TrendsQuery
 
   class << self
+    def ranked_trending(...)
+      rank(trending(...))
+    end
+
     def json_to_attributes(json_object)
       hashtags = (json_object["tag"] || []).filter_map { |t| t["name"] if t["type"] == "Hashtag" }
       links = LinkExtractor.new(json_object).extracted_urls
