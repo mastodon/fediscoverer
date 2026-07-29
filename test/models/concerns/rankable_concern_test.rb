@@ -19,5 +19,10 @@ class RankableConcernTest < ActiveSupport::TestCase
     Record.rank(records)
 
     assert_equal [ 100, 77, 11, 1 ], records.map(&:rank)
+
+    record = Record.new(1.5833333333333333)
+    Record.rank([ record ])
+
+    assert_equal 100, record.rank
   end
 end
