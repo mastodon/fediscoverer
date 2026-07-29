@@ -10,4 +10,8 @@ class Hashtag < ApplicationRecord
     through: :hashtag_usages, source: :content_object
 
   scope :trending, TrendsQuery
+
+  def self.ranked_trending(...)
+    rank(includes(:recent_examples).trending(...))
+  end
 end
