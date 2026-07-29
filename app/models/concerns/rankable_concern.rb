@@ -16,7 +16,7 @@ module RankableConcern
       one_percent = max_score / 100.0
 
       list.each do |item|
-        item.rank = (item.score / one_percent).ceil.to_i
+        item.rank = [ 100, (item.score / one_percent).ceil.to_i ].min
       end
     end
   end
