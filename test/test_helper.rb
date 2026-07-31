@@ -1,15 +1,18 @@
 ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
 
-require "minitest/mock"
-
+# Initialize webmock early, so httpx integration is ready
+# before httpx gets instantiated
 require "webmock"
 require "httpx/adapters/webmock"
 require "webmock/minitest"
 WebMock.disable_net_connect!(
   allow_localhost: true
 )
+
+require_relative "../config/environment"
+require "rails/test_help"
+
+require "minitest/mock"
 
 Dir[File.expand_path("support/**/*.rb", __dir__)].each { |f| require f }
 
