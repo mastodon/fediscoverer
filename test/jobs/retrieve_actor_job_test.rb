@@ -1,16 +1,14 @@
 require "test_helper"
 
 class RetrieveActorJobTest < ActiveJob::TestCase
-  include UriHelper
-
   setup do
-    @uri = punycode_uri("https://mastodon.example.com/users/NewActor")
+    @uri = "https://mastodon.example.com/users/NewActor"
     mock_valid_actor_request(uri: @uri)
     @job = RetrieveActorJob.new
   end
 
   test "creates a server if domain is not yet known" do
-    uri = punycode_uri("https://unknown.example.com/users/NewActor")
+    uri = "https://unknown.example.com/users/NewActor"
     mock_valid_actor_request(uri:)
 
     assert_difference -> { Server.count }, 1 do

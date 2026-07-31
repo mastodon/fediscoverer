@@ -16,7 +16,7 @@ class Server < ApplicationRecord
   end
 
   def fetch(uri)
-    uri = punycode_uri(uri)
+    uri = Addressable::URI.parse(uri).normalize
     FaspDataSharing::ActivityPubObject.new(uri:).fetch
     # TODO: Catch and record exceptions, use information to skip
     # or retry jobs at a later time
@@ -27,12 +27,5 @@ class Server < ApplicationRecord
       actors.destroy_all
       update!(blocked: true)
     end
-  end
-
-  private
-
-  def punycode_uri(uri)
-    normalized = Addressable::URI.parse(uri).normalize
-    Idnx.to_punycode(normalized)
   end
 end

@@ -1,10 +1,8 @@
 require "test_helper"
 
 class ContentObjectTest < ActiveSupport::TestCase
-  include UriHelper
-
   test "::create_from_json! creates an actor if the actor is not yet known" do
-    actor_uri = punycode_uri("https://unknown.example.com/users/NewActor")
+    actor_uri = "https://unknown.example.com/users/NewActor"
     mock_valid_actor_request(uri: actor_uri)
     object = mock_content_object(actor: actor_uri)
 
