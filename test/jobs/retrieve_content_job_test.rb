@@ -1,6 +1,8 @@
 require "test_helper"
 
 class RetrieveContentJobTest < ActiveJob::TestCase
+  include UriHelper
+
   setup do
     @uri = "https://mastodon.example.com/status/4711"
     mock_valid_content_request(uri: @uri)
@@ -8,10 +10,23 @@ class RetrieveContentJobTest < ActiveJob::TestCase
   end
 
   test "creates a server if domain is not yet known" do
-    actor_uri = "https://unknown.example.com/users/NewActor"
+    actor_uri = punycode_uri("https://unknown.example.com/users/NewActor")
     mock_valid_actor_request(uri: actor_uri)
     mock_valid_content_request(uri: @uri, actor: actor_uri)
 
+    assert_difference -> { Server.count }, 1 do
+      @job.perform(@uri)
+    end
+  end
+
+  test "when the URI includes non-ascii characters" do
+    actor_uri = punycode_uri('https://ja.wikipedia.org/wiki/\u4F11\u65E5\u8AB2\u9577')
+    mock_valid_actor_request(uri: actor_uri)
+    mock_valid_content_request(uri: @uri, actor: actor_uri)
+
+    assert_difference -> { Actor.count }, 1 do
+      @job.perform(@uri)
+    end
     assert_difference -> { Server.count }, 1 do
       @job.perform(@uri)
     end
@@ -24,7 +39,8 @@ class RetrieveContentJobTest < ActiveJob::TestCase
   end
 
   test "creates an actor if the actor is not yet known" do
-    actor_uri = "https://unknown.example.com/users/NewActor"
+    actor_uri = punycode_uri("https://unknown.example.com/users/NewActor")
+
     mock_valid_actor_request(uri: actor_uri)
     mock_valid_content_request(uri: @uri, actor: actor_uri)
 

@@ -37,3 +37,10 @@ module ActionDispatch
     end
   end
 end
+
+module UriHelper
+  def punycode_uri(uri)
+    normalized = Addressable::URI.parse(uri).normalize
+    Idnx.to_punycode(normalized)
+  end
+end
