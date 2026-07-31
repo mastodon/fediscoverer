@@ -1,3 +1,5 @@
+require "addressable/uri"
+
 class Server < ApplicationRecord
   has_many :actors, dependent: :delete_all
   has_many :content_objects, through: :actors
@@ -7,7 +9,7 @@ class Server < ApplicationRecord
   validates :domain_name, presence: true
 
   def self.from_uri(uri)
-    parsed_uri = URI(uri)
+    parsed_uri = Addressable::URI.parse(uri).normalize
     server = find_or_create_by!(domain_name: parsed_uri.host)
   end
 
@@ -16,6 +18,7 @@ class Server < ApplicationRecord
   end
 
   def fetch(uri)
+    uri = punycode_uri(uri)
     FaspDataSharing::ActivityPubObject.new(uri:).fetch
     # TODO: Catch and record exceptions, use information to skip
     # or retry jobs at a later time
@@ -26,5 +29,12 @@ class Server < ApplicationRecord
       actors.destroy_all
       update!(blocked: true)
     end
+  end
+
+  private
+
+  def punycode_uri(uri)
+    normalized = Addressable::URI.parse(uri).normalize
+    Idnx.to_punycode(normalized)
   end
 end
