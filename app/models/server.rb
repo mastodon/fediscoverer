@@ -1,5 +1,3 @@
-require "addressable/uri"
-
 class Server < ApplicationRecord
   has_many :actors, dependent: :delete_all
   has_many :content_objects, through: :actors
