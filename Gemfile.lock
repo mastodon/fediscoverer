@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: bef6163562dc2ef17dbc4354d94925e97b4904f0
+  revision: 5c526cde91e0aaf406948a1699977523aabe7e86
   glob: fasp_base/*.gemspec
   specs:
     fasp_base (0.1.0)
@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: bef6163562dc2ef17dbc4354d94925e97b4904f0
+  revision: 5c526cde91e0aaf406948a1699977523aabe7e86
   glob: fasp_data_sharing/*.gemspec
   specs:
     fasp_data_sharing (0.1.0)
@@ -131,7 +131,7 @@ GEM
     drb (2.2.3)
     erb (6.0.6)
     erubi (1.13.1)
-    et-orbi (1.4.0)
+    et-orbi (1.4.1)
       tzinfo
     faker (3.8.0)
       i18n (>= 1.8.11, < 2)
@@ -184,7 +184,7 @@ GEM
     jbuilder (2.15.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.21.1)
+    json (2.21.2)
     language_server-protocol (3.17.0.6)
     lint_roller (1.1.0)
     linzer (0.7.9)
