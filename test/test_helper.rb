@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= "test"
 # Initialize webmock early, so httpx integration is ready
 # before httpx gets instantiated
 require "webmock"
+require "httpx"
 require "httpx/adapters/webmock"
 require "webmock/minitest"
 WebMock.disable_net_connect!(
