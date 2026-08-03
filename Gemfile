@@ -29,6 +29,7 @@ gem "solid_queue"
 
 # Web interface for solid queue
 gem "mission_control-jobs"
+gem "idnx"
 # Parsing (international) URLs
 gem "addressable", require: false
 # Reduces boot times through caching; required in config/boot.rb
