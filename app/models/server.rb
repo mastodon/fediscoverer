@@ -16,7 +16,6 @@ class Server < ApplicationRecord
   end
 
   def fetch(uri)
-    uri = Addressable::URI.parse(uri).normalize
     FaspDataSharing::ActivityPubObject.new(uri:).fetch
     # TODO: Catch and record exceptions, use information to skip
     # or retry jobs at a later time

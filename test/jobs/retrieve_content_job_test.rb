@@ -18,7 +18,7 @@ class RetrieveContentJobTest < ActiveJob::TestCase
   end
 
   test "can handle actor creation when a URI that includes non-ascii characters" do
-    actor_uri = 'https://other.example.com/users/\u4F11\u65E5\u8AB2\u9577'
+    actor_uri = "https://other.example.com/users/\u4F11\u65E5\u8AB2\u9577"
     mock_valid_actor_request(uri: actor_uri)
     mock_valid_content_request(uri: @uri, actor: actor_uri)
 
@@ -28,7 +28,7 @@ class RetrieveContentJobTest < ActiveJob::TestCase
   end
 
   test "can handle server creation when a URI that includes non-ascii characters" do
-    actor_uri = 'https://other.example.com/users/\u4F11\u65E5\u8AB2\u9577'
+    actor_uri = "https://other.example.com/users/\u4F11\u65E5\u8AB2\u9577"
     mock_valid_actor_request(uri: actor_uri)
     mock_valid_content_request(uri: @uri, actor: actor_uri)
 
