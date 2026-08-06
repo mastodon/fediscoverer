@@ -4,7 +4,7 @@
 
 require "opentelemetry/sdk"
 
-if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
+if true # ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
   require "opentelemetry-exporter-otlp"
   require "opentelemetry/instrumentation/active_support"
   require "opentelemetry/instrumentation/rack"
@@ -19,12 +19,12 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
   OpenTelemetry::SDK.configure do |c|
     c.service_name = "fediscoverer" unless ENV["OTEL_SERVICE_NAME"].present?
 
-    # excludes OpenTelemetry::Instrumentation::ActiveJob since this is already covered by sidekiq logging
     c.use "OpenTelemetry::Instrumentation::ActionView"
     c.use "OpenTelemetry::Instrumentation::ActionMailer"
     c.use "OpenTelemetry::Instrumentation::ActionPack"
     c.use "OpenTelemetry::Instrumentation::ActiveRecord"
     c.use "OpenTelemetry::Instrumentation::ActiveSupport"
+    c.use "OpenTelemetry::Instrumentation::ActiveJob"
     c.use "OpenTelemetry::Instrumentation::ConcurrentRuby"
     c.use "OpenTelemetry::Instrumentation::PG"
     c.use "OpenTelemetry::Instrumentation::Rack"
