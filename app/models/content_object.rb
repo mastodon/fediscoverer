@@ -20,7 +20,6 @@ class ContentObject < ApplicationRecord
   validates :object_type, presence: true, inclusion: TYPES
 
   validate :permission_to_be_indexed
-  normalizes :uri, with: UriNormalizer.new
 
   after_save :record_activity
   after_save :add_actor_languages

@@ -15,8 +15,6 @@ class Actor < ApplicationRecord
   has_many :link_usages, through: :content_objects
 
   validates :uri, presence: true
-  normalizes :uri, with: UriNormalizer.new
-
   validates :actor_type, presence: true, inclusion: TYPES
   validates :full_text,
     presence: { if: :discoverable? },

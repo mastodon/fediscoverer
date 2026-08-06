@@ -1,4 +1,4 @@
-require 'addressable'
+require "addressable"
 
 class UriNormalizer
   def call(uri)
