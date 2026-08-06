@@ -17,7 +17,7 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
   require "opentelemetry/instrumentation/rails"
 
   OpenTelemetry::SDK.configure do |c|
-    c.service_name = "fediscoverer"
+    c.service_name = "fediscoverer" unless ENV["OTEL_SERVICE_NAME"].present?
 
     # excludes OpenTelemetry::Instrumentation::ActiveJob since this is already covered by sidekiq logging
     c.use "OpenTelemetry::Instrumentation::ActionView"
