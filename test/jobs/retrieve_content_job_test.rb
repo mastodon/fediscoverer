@@ -17,6 +17,36 @@ class RetrieveContentJobTest < ActiveJob::TestCase
     end
   end
 
+  test "can handle actor creation when a URI that includes non-ascii characters" do
+    actor_uri = "https://other.example.com/users/\u4F11\u65E5\u8AB2\u9577"
+    mock_valid_actor_request(uri: actor_uri)
+    mock_valid_content_request(uri: @uri, actor: actor_uri)
+
+    assert_difference -> { Server.count }, 1 do
+      @job.perform(@uri)
+    end
+  end
+
+  test "can handle server creation when a URI that includes non-ascii characters" do
+    actor_uri = "https://other.example.com/users/\u4F11\u65E5\u8AB2\u9577"
+    mock_valid_actor_request(uri: actor_uri)
+    mock_valid_content_request(uri: @uri, actor: actor_uri)
+
+    assert_difference -> { Server.count }, 1 do
+      @job.perform(@uri)
+    end
+  end
+
+  test "can handle server creation when a URI can not be parsed to punycode" do
+    actor_uri = "http://www.詹姆斯.com/"
+    mock_valid_actor_request(uri: actor_uri)
+    mock_valid_content_request(uri: @uri, actor: actor_uri)
+
+    assert_difference -> { Server.count }, 1 do
+      @job.perform(@uri)
+    end
+  end
+
   test "does not create a server if domain is known" do
     assert_no_difference -> { Server.count } do
       @job.perform(@uri)

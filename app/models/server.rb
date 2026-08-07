@@ -7,7 +7,7 @@ class Server < ApplicationRecord
   validates :domain_name, presence: true
 
   def self.from_uri(uri)
-    parsed_uri = URI(uri)
+    parsed_uri = Addressable::URI.parse(uri).normalize
     server = find_or_create_by!(domain_name: parsed_uri.host)
   end
 
