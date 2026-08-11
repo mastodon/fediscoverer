@@ -14,6 +14,11 @@ module Webmocks
     stub_json_request(collection[:id], collection)
   end
 
+  def mock_valid_peertube_request(...)
+    object = mock_peertube_object(...)
+    stub_json_request(object[:id], object)
+  end
+
   private
 
   def stub_json_request(uri, json_object)
