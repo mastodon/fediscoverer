@@ -95,13 +95,77 @@ module MockObjects
       likes: {
         id: "#{uri}/likes",
         type: "Collection",
-        totatlItems: 3
+        totalItems: 3
       },
       shares: {
         id: "#{uri}/shares",
         type: "Collection",
         totalItems: 2
       },
+      tag:,
+      attachments:
+    }.with_indifferent_access
+  end
+
+  def mock_peertube_object(
+    uri: "https://mastodon.example.com/status/99",
+    actor: actors(:discoverable).uri,
+    to: [ "https://www.w3.org/ns/activitystreams#Public" ],
+    type: "Video",
+    content: Faker::HTML.paragraph,
+    hashtags: [],
+    images: 0,
+    videos: 1,
+    audio: 0,
+    sensitive: false
+  )
+    tag = hashtags.map do |hashtag|
+      {
+        type: "Hashtag",
+        name: hashtag
+      }
+    end unless hashtags.nil?
+    attachments = []
+    images.times { attachments << mock_attachment }
+    videos.times { attachments << mock_attachment(media_type: "video/mp4") }
+    audio.times { attachments << mock_attachment(media_type: "audio/mp3") }
+    {
+      "@context": [
+        "https://www.w3.org/ns/activitystreams",
+        {
+          sensitive: "as:sensitive",
+          toot: "http://joinmastodon.org/ns#"
+        }
+      ],
+      id: uri,
+      type:,
+      summary: Faker::HTML.paragraph,
+      published: 5.minutes.ago.utc.iso8601,
+      url: uri,
+      attributedTo: actor,
+      to:,
+      sensitive: sensitive,
+      content:,
+      contentMap: {
+        en: content
+      },
+      replies: {
+        id: "#{uri}/replies",
+        type: "Collection",
+        first: {
+          type: "CollectionPage",
+          next: "#{uri}/replies?page=2",
+          partOf: "#{uri}/replies",
+          item: []
+        }
+      },
+      likes: "https://mastodon.example.com/videos/watch/04af977f-4201-4697-be67-a8d8cae6fa7a/likes",
+      dislikes: "https://mastodon.example.com/videos/watch/04af977f-4201-4697-be67-a8d8cae6fa7a/dislikes",
+      shares: "https://mastodon.example.com/videos/watch/04af977f-4201-4697-be67-a8d8cae6fa7a/announces",
+      comments: "https://mastodon.example.com/videos/watch/04af977f-4201-4697-be67-a8d8cae6fa7a/comments",
+      hasParts: "https://mastodon.example.com/videos/watch/04af977f-4201-4697-be67-a8d8cae6fa7a/chapters",
+      playerSettings: "https://mastodon.example.com/videos/watch/04af977f-4201-4697-be67-a8d8cae6fa7a/player-settings",
+      embedUrl: "https://mastodon.example.com/videos/embed/1zywKcr1ChzL7R9rG6yCnq",
       tag:,
       attachments:
     }.with_indifferent_access

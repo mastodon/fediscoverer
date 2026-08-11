@@ -7,6 +7,17 @@ class RetrieveContentJobTest < ActiveJob::TestCase
     @job = RetrieveContentJob.new
   end
 
+  test "can handle peertube requests" do
+    content = "https://mastodon.example.com/videos/watch/04af977f-4201-4697-be67-a8d8cae6fa7a"
+    mock_valid_actor_request
+    request = mock_valid_peertube_request(uri: content)
+    job = RetrieveContentJob.new
+
+    assert_difference -> { ContentObject.count }, 1 do
+      job.perform(content)
+    end
+  end
+
   test "creates a server if domain is not yet known" do
     actor_uri = "https://unknown.example.com/users/NewActor"
     mock_valid_actor_request(uri: actor_uri)

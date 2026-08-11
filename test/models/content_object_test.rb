@@ -11,6 +11,16 @@ class ContentObjectTest < ActiveSupport::TestCase
     end
   end
 
+  test "::create_from_json! with peertube content" do
+    actor_uri = "https://unknown.example.com/users/NewActor"
+    mock_valid_actor_request(uri: actor_uri)
+    object = mock_peertube_object(actor: actor_uri)
+
+    assert_difference -> { Actor.count }, 1 do
+      ContentObject.create_from_json!(object)
+    end
+  end
+
   test "::create_from_json! does not create an actor if actor is known" do
     assert_no_difference -> { Actor.count } do
       ContentObject.create_from_json!(mock_content_object)

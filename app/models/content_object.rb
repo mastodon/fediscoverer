@@ -47,8 +47,8 @@ class ContentObject < ApplicationRecord
         sensitive: !!json_object["sensitive"],
         language: json_object["contentMap"]&.keys&.first || "en",
         full_text: json_object["content"],
-        shares: json_object.dig("shares", "totalItems") || 0,
-        likes: json_object.dig("likes", "totalItems") || 0,
+        shares: handle_string_or_collection(json_object, "shares"),
+        likes: handle_string_or_collection(json_object, "likes"),
         hashtags: hashtags.uniq.map { |name| Hashtag.find_or_initialize_by(name:) },
         links: links.uniq.map { |url| Link.find_or_initialize_by(url:) },
         attached_images: count_attachments(json_object, "image"),
@@ -82,6 +82,11 @@ class ContentObject < ApplicationRecord
     end
 
     private
+
+    def handle_string_or_collection(json_object, key)
+      return json_object.dig(key, "totalItems") if json_object[key].is_a?(Hash)
+      0
+    end
 
     def count_attachments(json_object, type)
       (json_object["attachments"] || []).count do |attachment|
