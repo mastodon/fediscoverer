@@ -1,5 +1,5 @@
 class UriNormalizer
   def call(uri)
-    URI(uri).normalize.to_s
+    Addressable::URI.parse(uri).normalize.to_s
   end
 end
