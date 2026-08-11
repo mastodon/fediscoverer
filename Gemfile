@@ -31,8 +31,8 @@ gem "solid_queue"
 gem "mission_control-jobs"
 
 # Parsing (international) URLs
-gem "idnx"
 gem "addressable"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 

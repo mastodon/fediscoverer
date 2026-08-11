@@ -1,18 +1,20 @@
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 5c526cde91e0aaf406948a1699977523aabe7e86
+  revision: d65475175a98b01d9397ad5f09eb1ddc4bc79db3
   glob: fasp_base/*.gemspec
   specs:
     fasp_base (0.1.0)
+      addressable
       bcrypt
       httpx
+      idnx
       linzer (>= 0.7.7)
       openssl
       rails (>= 8.0.0)
 
 GIT
   remote: https://github.com/mastodon/fasp_ruby.git
-  revision: 5c526cde91e0aaf406948a1699977523aabe7e86
+  revision: d65475175a98b01d9397ad5f09eb1ddc4bc79db3
   glob: fasp_data_sharing/*.gemspec
   specs:
     fasp_data_sharing (0.1.0)
@@ -507,7 +509,6 @@ DEPENDENCIES
   fasp_base!
   fasp_data_sharing!
   htmlentities
-  idnx
   importmap-rails
   jbuilder
   loofah
