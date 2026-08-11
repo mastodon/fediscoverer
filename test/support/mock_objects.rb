@@ -95,7 +95,7 @@ module MockObjects
       likes: {
         id: "#{uri}/likes",
         type: "Collection",
-        totatlItems: 3
+        totalItems: 3
       },
       shares: {
         id: "#{uri}/shares",
