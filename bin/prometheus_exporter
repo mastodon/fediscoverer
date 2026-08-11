@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require "rubygems"
+require "bundler/setup"
 
 ARGV.unshift("-a", "lib/prometheus_exporter/server/solid_queue_collector.rb")
 
