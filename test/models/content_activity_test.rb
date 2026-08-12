@@ -15,4 +15,11 @@ class ContentActivityTest < ActiveSupport::TestCase
 
     assert_equal content_objects.last.content_activities.order(hour_of_activity: :asc).last.score, distribution[content_objects.last.id].last
   end
+
+  test "::record when content object is deleted" do
+    content = content_objects(:complex_language_tag)
+    ContentObject.find_by(id: content.id).destroy
+
+    assert_nil ContentActivity.record(content)
+  end
 end
