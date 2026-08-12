@@ -21,6 +21,10 @@ class ContentActivity < ApplicationRecord
   rescue ActiveRecord::RecordNotFound
     # It is possible that the activity has been deleted between
     # ::find_or_create_by and #with_lock
+  rescue ActiveRecord::InvalidForeignKey
+    # the content object has been deleted between create_from_json! and record
+    # insert or update on table "content_activities" violates foreign key constraint
+    # Key is not present in table "content_objects"
   end
 
   def self.record_reply(content_object, replied_at)
