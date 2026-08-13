@@ -79,6 +79,9 @@ class ContentObject < ApplicationRecord
       attributes = json_to_attributes(json_object).merge(actor:)
 
       create_with(attributes).find_or_create_by!(uri: json_object["id"])
+
+    rescue ActiveRecord::RecordNotFound
+      # It is possible that RetrieveActorJob is not yet complete and actor can't be found
     end
 
     private
