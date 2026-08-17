@@ -57,7 +57,7 @@ group :opentelemetry do
   gem "opentelemetry-instrumentation-active_record", require: false
   gem "opentelemetry-instrumentation-active_support", require: false
   gem "opentelemetry-instrumentation-concurrent_ruby", "~> 0.25.0", require: false
-  gem "opentelemetry-instrumentation-pg", "~> 0.36.0", require: false
+  gem "opentelemetry-instrumentation-pg", "~> 0.37.0", require: false
   gem "opentelemetry-instrumentation-rack", "~> 0.31.0", require: false
   gem "opentelemetry-instrumentation-rails", "~> 0.42.0", require: false
   gem "opentelemetry-sdk", "~> 1.13", require: false
