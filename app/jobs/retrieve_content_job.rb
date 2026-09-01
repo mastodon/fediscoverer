@@ -12,6 +12,7 @@ class RetrieveContentJob < ApplicationJob
 
   def perform(uri, update = false)
     return if !update && ContentObject.where(uri:).exists?
+    return if update && ContentObject.where(uri:).blank?
 
     server = Server.from_uri(uri)
     return if server.blocked?
