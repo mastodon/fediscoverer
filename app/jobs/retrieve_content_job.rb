@@ -27,7 +27,7 @@ class RetrieveContentJob < ApplicationJob
 
     if ContentObject.where(uri:).exists? && update
       ContentObject.where(uri:).take.update_from_json(content_json)
-    else
+    elsif !update
       ContentObject.create_from_json!(content_json)
     end
   rescue HTTPX::HTTPError => e
