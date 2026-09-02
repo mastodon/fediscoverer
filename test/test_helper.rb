@@ -41,3 +41,24 @@ module ActionDispatch
     end
   end
 end
+
+
+# to check for n+1 and such
+# use:
+# assert_queries_count(15) do
+#   @job.perform(uri)
+# end
+
+def assert_queries_count(expected_count)
+  queries = []
+
+  counter_f = ->(name, started, finished, unique_id, payload) {
+    unless payload[:name].in? %w[ CACHE SCHEMA ]
+      count += 1
+    end
+  }
+
+  ActiveSupport::Notifications.subscribed(counter_f, "sql.active_record", &block)
+
+  count
+end
