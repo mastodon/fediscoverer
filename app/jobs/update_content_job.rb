@@ -18,6 +18,7 @@ class UpdateContentJob < ApplicationJob
     return if server.blocked?
 
     content_json = server.fetch(uri)
+    return if content_json.blank?
 
     # Handle reblogs
     if content_json.dig("type") == "Announce"
