@@ -1,4 +1,4 @@
-class RetrieveActorJob < ApplicationJob
+class UpdateActorJob < ApplicationJob
   queue_as :retrieval
 
   # Idea to stay within Mastodon's default rate-limits. These do not apply
@@ -11,7 +11,8 @@ class RetrieveActorJob < ApplicationJob
   limits_concurrency key: ->(uri) { uri }, on_conflict: :discard
 
   def perform(uri)
-    return if Actor.where(uri:).exists?
+    find_actor = Actor.where(uri:)
+    return unless find_actor.present?
 
     server = Server.from_uri(uri)
     return if server.blocked?
@@ -19,7 +20,7 @@ class RetrieveActorJob < ApplicationJob
     actor_json = server.fetch(uri)
     return if actor_json.blank?
 
-    actor = Actor.create_from_json!(actor_json)
+    actor = find_actor.first.tap { |a| a.update_from_json(actor_json) }
     if actor_json["followers"].present?
       UpdateFollowersCountJob.perform_later(actor, actor_json["followers"])
     end
