@@ -8,16 +8,16 @@ class RetrieveContentJob < ApplicationJob
   # limits_concurrency to: 300, key: ->(uri) { URI(uri).host }, duration: 5.minutes, group: "retrieval"
 
   # Only allow a single job per URI at the same time
-  limits_concurrency key: ->(uri, _ = false) { uri }, on_conflict: :discard
+  limits_concurrency key: ->(uri) { uri }, on_conflict: :discard
 
-  def perform(uri, update = false)
-    return if !update && ContentObject.where(uri:).exists?
-    return if update && ContentObject.where(uri:).blank?
+  def perform(uri)
+    return if ContentObject.where(uri:).exists?
 
     server = Server.from_uri(uri)
     return if server.blocked?
 
     content_json = server.fetch(uri)
+    return if content_json.blank?
 
     # Handle reblogs
     if content_json.dig("type") == "Announce"
@@ -25,11 +25,7 @@ class RetrieveContentJob < ApplicationJob
       uri = content_json["id"]
     end
 
-    if ContentObject.where(uri:).exists? && update
-      ContentObject.where(uri:).take.update_from_json(content_json)
-    elsif !update
-      ContentObject.create_from_json!(content_json)
-    end
+    ContentObject.create_from_json!(content_json)
   rescue HTTPX::HTTPError => e
     raise if e.status >= 500
   end
