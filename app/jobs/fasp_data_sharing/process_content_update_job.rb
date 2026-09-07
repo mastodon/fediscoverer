@@ -6,7 +6,7 @@ module FaspDataSharing
     def perform(uri)
       return if ContentObject.where(uri:).blank?
 
-      ::RetrieveContentJob.perform_later(uri, true)
+      ::UpdateContentJob.perform_later(uri)
     end
   end
 end
