@@ -11,7 +11,7 @@ class ContentObject::LinkExtractor
 
   def extract_urls
     parsed_fragment.css("a[href]:not([rel~=tag]):not(.u-url)").filter_map do |a|
-      a["href"] unless mention?(a["href"])
+      a["href"].strip unless mention?(a["href"])
     end
   end
 
