@@ -3,16 +3,17 @@ require "test_helper"
 module FaspDataSharing
   class ProcessAccountUpdateJobTest < ActiveJob::TestCase
     setup do
-      @uri = "https://unknown.example.com/users/NewActor"
+      @uri = "https://mastodon.example.com/users/10016"
       @job = ProcessAccountUpdateJob.new
     end
 
-    test "updates successfully when actor is present" do
-      mock_valid_actor_request(uri: @uri)
+    test "a known URI queues a job" do
       RetrieveActorJob.new.perform(@uri)
+      mock_valid_actor_request(uri: @uri)
 
-      job = @job.perform(@uri)
-      assert(job.perform_now)
+      assert_enqueued_jobs(1, only: ::UpdateActorJob) do
+        @job.perform(@uri)
+      end
     end
   end
 end

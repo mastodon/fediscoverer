@@ -11,8 +11,8 @@ class UpdateActorJob < ApplicationJob
   limits_concurrency key: ->(uri) { uri }, on_conflict: :discard
 
   def perform(uri)
-    find_actor = Actor.where(uri:)
-    return unless find_actor.present?
+    actor = Actor.find_by(uri:)
+    return unless actor.present?
 
     server = Server.from_uri(uri)
     return if server.blocked?
@@ -20,7 +20,7 @@ class UpdateActorJob < ApplicationJob
     actor_json = server.fetch(uri)
     return if actor_json.blank?
 
-    actor = find_actor.first.tap { |a| a.update_from_json(actor_json) }
+    actor = actor.tap { |a| a.update_from_json(actor_json) }
     if actor_json["followers"].present?
       UpdateFollowersCountJob.perform_later(actor, actor_json["followers"])
     end
