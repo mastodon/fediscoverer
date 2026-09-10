@@ -2,6 +2,10 @@ require "test_helper"
 
 module FaspDataSharing
   class ProcessNewAccountJobTest < ActiveJob::TestCase
+    setup do
+      @job = ProcessNewAccountJob.new
+    end
+
     test "an unknown URI queues an actor retrieval job" do
       uri = "https://new.example.com/actor/22"
       assert_enqueued_with(job: ::RetrieveActorJob, args: [ uri ]) do
