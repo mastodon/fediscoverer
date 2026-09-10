@@ -23,4 +23,18 @@ class Fasp::AccountSearch::V0::SearchTest < ActionDispatch::IntegrationTest
     assert parsed_response.is_a?(Array)
     assert_equal 20, parsed_response.size
   end
+
+  test "get authenticated with language param" do
+    term = "please find"
+    language = "en"
+    authenticated_headers = request_authentication_headers(@server, :get, fasp_account_search_v0_search_url(term:, language:), "")
+
+    get fasp_account_search_v0_search_path(term:, language:), as: :json, headers: authenticated_headers
+
+    assert_response :ok
+    parsed_response = JSON.parse(response.body)
+
+    assert parsed_response.is_a?(Array)
+    assert_equal 1, parsed_response.size
+  end
 end

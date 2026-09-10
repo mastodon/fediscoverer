@@ -38,4 +38,10 @@ class ActorTest < ActiveSupport::TestCase
 
     refute_empty results
   end
+
+  test "::search works with language" do
+    results = Actor.posts_in_language("en").search("please find")
+
+    refute_empty results
+  end
 end
