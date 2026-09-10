@@ -20,7 +20,7 @@ class UpdateActorJob < ApplicationJob
     actor_json = server.fetch(uri)
     return if actor_json.blank?
 
-    actor = actor.tap { |a| a.update_from_json(actor_json) }
+    actor.update_from_json(actor_json)
     if actor_json["followers"].present?
       UpdateFollowersCountJob.perform_later(actor, actor_json["followers"])
     end
