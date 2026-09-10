@@ -3,13 +3,8 @@ class Fasp::AccountSearch::V0::SearchesController < Fasp::ApiController
     @limit = params[:limit] ? params[:limit].to_i : 20
     @page = params[:page] ? params[:page].to_i : 1
 
-    @accounts = if params[:language].present?
-      actors = Actor.discoverable.posts_in_language(params[:language])
-      actors.search(params[:term])
-    else
-      Actor.discoverable.search(params[:term])
-    end
-
+    @accounts = Actor.discoverable.search(params[:term])
+    @accounts = @accounts.posts_in_language(params[:language]) if params[:language].present?
 
     @total = @accounts.count
     @results = @accounts
