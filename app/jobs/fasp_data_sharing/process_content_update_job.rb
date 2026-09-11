@@ -4,7 +4,7 @@ module FaspDataSharing
     queue_as :ingress
 
     def perform(uri)
-      return if ContentObject.where(uri:).blank?
+      return if ContentObject.where(uri:).none?
 
       ::UpdateContentJob.perform_later(uri)
     end

@@ -5,16 +5,15 @@ module FaspDataSharing
     setup do
       @uri = "https://mastodon.example.com/status/4711"
       @job = ProcessContentUpdateJob.new
-      @actor_uri = "https://unknown.example.com/users/NewActor"
     end
 
     test "updates successfully when content object is present" do
-      mock_valid_actor_request(uri: @actor_uri)
-      mock_valid_content_request(uri: @uri, actor: @actor_uri)
+      mock_valid_content_request(uri: @uri)
       RetrieveContentJob.new.perform(@uri)
 
-      job = @job.perform(@uri)
-      assert(job.perform_now)
+      assert_enqueued_with(job: ::UpdateContentJob, args: [ @uri ]) do
+        @job.perform(@uri)
+      end
     end
 
     test "does not enqueue job when content object is not existent" do
