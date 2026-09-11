@@ -6,7 +6,7 @@ module FaspDataSharing
     def perform(uri)
       return if uri.blank?
 
-      ::RetrieveActorJob.perform_later(uri, true)
+      ::UpdateActorJob.perform_later(uri)
     end
   end
 end
