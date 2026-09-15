@@ -1,4 +1,4 @@
-class RetrieveContentJob < ApplicationJob
+class UpdateContentJob < ApplicationJob
   queue_as :retrieval
 
   # Idea to stay within Mastodon's default rate-limits. These do not apply
@@ -11,7 +11,8 @@ class RetrieveContentJob < ApplicationJob
   limits_concurrency key: ->(uri) { uri }, on_conflict: :discard
 
   def perform(uri)
-    return if ContentObject.where(uri:).exists?
+    content = ContentObject.find_by(uri:)
+    return if content.blank?
 
     server = Server.from_uri(uri)
     return if server.blocked?
@@ -25,7 +26,7 @@ class RetrieveContentJob < ApplicationJob
       uri = content_json["id"]
     end
 
-    ContentObject.create_from_json!(content_json)
+    content.update_from_json(content_json)
   rescue HTTPX::HTTPError => e
     raise if e.status >= 500
   end
