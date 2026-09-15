@@ -8,25 +8,24 @@ class UpdateContentJobTest < ActiveJob::TestCase
     @initial_content = ContentObject.find_by(uri: @uri)
   end
 
+  test "runs successfuly when ContentObject is already known" do
+    RetrieveContentJob.new.perform(@uri)
+    mock_valid_content_request(uri: @uri)
+
+    @job.perform(@uri)
+    refute_equal(@initial_content, ContentObject.find_by(uri: @uri))
+  end
+
   test "does not try to update content if domain is not yet known" do
     uri = "https://unknown.example.com/status/1337"
 
     assert_nil @job.perform(uri)
   end
 
-  test "runs successfuly when ContentObject is already known" do
-    RetrieveContentJob.new.perform(@uri)
-    mock_valid_content_request(uri: @uri)
-
-    @job.perform(@uri)
-    assert(@initial_content != ContentObject.find_by(uri: @uri))
-  end
-
   test "does not update a content object if actor is not indexable" do
     mock_valid_content_request(uri: @uri, actor: actors(:not_discoverable).uri)
 
-    @job.perform(@uri)
-    assert(@initial_content == ContentObject.find_by(uri: @uri))
+    assert_nil @job.perform(@uri)
   end
 
   test "does not try to update content from blocked server" do
