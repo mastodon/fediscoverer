@@ -4,8 +4,8 @@ class FollowRecommendation
   def self.for(account_uri, language: nil)
     new([
       Similar.new,
-      Preset.new,
-      Popular.new
+      Preset.new
+      # Popular.new
     ]).recommended_account_uris_for(account_uri, language:)
   end
 
