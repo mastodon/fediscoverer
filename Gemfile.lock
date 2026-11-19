@@ -537,7 +537,7 @@ DEPENDENCIES
   opentelemetry-instrumentation-rack (~> 0.31.2)
   opentelemetry-instrumentation-rails (~> 0.42.0)
   opentelemetry-sdk (~> 1.13)
-  pg (~> 1.1)
+  pg (~> 1.7)
   prometheus_exporter
   propshaft
   puma (>= 5.0)
